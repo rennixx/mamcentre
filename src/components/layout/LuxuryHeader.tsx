@@ -23,7 +23,7 @@ const HeaderContainer = styled(motion.header)<{ scrolled: boolean }>`
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: ${props => props.scrolled ? '0.8rem 0' : '1.2rem 0'};
+  padding: ${props => props.scrolled ? '0.3rem 0' : '0.6rem 0'};
 `;
 
 const HeaderContent = styled.div`
@@ -107,18 +107,18 @@ const Logo = styled(Link)`
 const Navigation = styled.nav`
   display: none;
   align-items: center;
-  gap: 3rem;
+  gap: 2.5rem;
   
   @media (min-width: 1024px) {
     display: flex;
   }
   
   @media (min-width: 1440px) {
-    gap: 4rem;
+    gap: 3rem;
   }
   
   @media (min-width: 1920px) {
-    gap: 5rem;
+    gap: 3rem;
   }
 `;
 
@@ -133,6 +133,7 @@ const NavLink = styled(Link)<{ isActive: boolean }>`
   font-size: 1rem;
   position: relative;
   transition: all 0.3s ease;
+  text-transform: capitalize;
   
   &::after {
     content: '';
