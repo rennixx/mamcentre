@@ -1,0 +1,102 @@
+{
+  "hero": {
+    "title": "Discover Excellence",
+    "subtitle": "Immerse yourself in the beauty and precision of equestrian artistry through our curated gallery of memorable moments."
+  },
+  "filters": {
+    "all": "All",
+    "facilities": "Facilities",
+    "horses": "Horses", 
+    "training": "Training",
+    "events": "Events",
+    "achievements": "Achievements"
+  },
+  "images": {
+    "facilities": {
+      "indoorArena": {
+        "title": "Premier Training Facilities",
+        "description": "State-of-the-art indoor arenas with premium footing",
+        "name": "Indoor Arena"
+      },
+      "outdoorRing": {
+        "title": "Outdoor Training Ring", 
+        "description": "Spacious outdoor facilities for advanced training",
+        "name": "Outdoor Ring"
+      },
+      "stables": {
+        "title": "Luxury Stables",
+        "description": "Premium horse accommodations with modern amenities",
+        "name": "Stable Complex"
+      }
+    },
+    "horses": {
+      "thunder": {
+        "title": "Championship Horses",
+        "description": "Meet our award-winning thoroughbreds",
+        "name": "Thunder"
+      },
+      "phoenix": {
+        "title": "Elite Performance Horse",
+        "description": "Exceptional breeding and training excellence", 
+        "name": "Phoenix"
+      },
+      "majesty": {
+        "title": "Show Champion",
+        "description": "Multiple award-winning competition horse",
+        "name": "Majesty"
+      }
+    },
+    "training": {
+      "privateLesson": {
+        "title": "Expert Instruction",
+        "description": "Professional guidance for all skill levels",
+        "name": "Private Lesson"
+      },
+      "jumpTraining": {
+        "title": "Advanced Jump Training",
+        "description": "Precision jumping techniques and courses",
+        "name": "Jump Training"
+      },
+      "dressage": {
+        "title": "Classical Dressage",
+        "description": "Elegant movement and partnership development",
+        "name": "Dressage Training"
+      }
+    },
+    "events": {
+      "competition": {
+        "title": "Championship Events",
+        "description": "Prestigious competitions and showcases",
+        "name": "Championship"
+      },
+      "clinic": {
+        "title": "Master Class Clinics",
+        "description": "Educational sessions with renowned experts",
+        "name": "Clinic Session"
+      }
+    },
+    "achievements": {
+      "awards": {
+        "title": "Awards & Recognition",
+        "description": "Celebrating excellence and achievements",
+        "name": "Awards Ceremony"
+      },
+      "graduates": {
+        "title": "Success Stories",
+        "description": "Our riders achieving their dreams",
+        "name": "Graduate Achievement"
+      }
+    }
+  },
+  "lightbox": {
+    "close": "Close",
+    "previous": "Previous", 
+    "next": "Next",
+    "loading": "Loading..."
+  },
+  "cta": {
+    "title": "Ready to Create Your Own Story?",
+    "description": "Join our community of passionate equestrians and begin your journey to excellence.",
+    "button": "Book Your Experience"
+  }
+}

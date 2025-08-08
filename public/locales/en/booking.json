@@ -1,0 +1,139 @@
+{
+  "hero": {
+    "title": "Reserve Your Experience",
+    "description": "Step into a world of equestrian excellence. Choose from our carefully curated experiences designed to elevate your riding journey, whether you're just beginning or pursuing championship dreams."
+  },
+  "packages": {
+    "beginner": {
+      "title": "Beginner Experience",
+      "price": 150,
+      "unit": "per session",
+      "description": "Perfect introduction to the world of premium equestrian training.",
+      "features": [
+        "1-hour private lesson",
+        "Professional instructor",
+        "Basic horse care education",
+        "Safety equipment included",
+        "Refreshments after session"
+      ]
+    },
+    "intermediate": {
+      "title": "Intermediate Training",
+      "price": 200,
+      "unit": "per session",
+      "description": "Advanced techniques for developing riders ready for the next level.",
+      "features": [
+        "1.5-hour intensive session",
+        "Advanced riding techniques",
+        "Jump training introduction",
+        "Horse selection guidance",
+        "Progress tracking system",
+        "Post-session consultation"
+      ]
+    },
+    "championship": {
+      "title": "Championship Program",
+      "price": 350,
+      "unit": "per session",
+      "description": "Elite training program for serious competitors and aspiring champions.",
+      "features": [
+        "2-hour comprehensive session",
+        "Competition preparation",
+        "Advanced jump courses",
+        "Performance analysis",
+        "Customized training plan",
+        "Video review session",
+        "Nutritional guidance"
+      ]
+    }
+  },
+  "form": {
+    "title": "Complete Your Booking",
+    "steps": {
+      "1": "Select Package",
+      "2": "Personal Details", 
+      "3": "Confirmation"
+    },
+    "fields": {
+      "personalInfo": {
+        "firstName": {
+          "label": "First Name",
+          "placeholder": "Enter your first name"
+        },
+        "lastName": {
+          "label": "Last Name", 
+          "placeholder": "Enter your last name"
+        },
+        "email": {
+          "label": "Email Address",
+          "placeholder": "Enter your email address"
+        },
+        "phone": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number"
+        },
+        "experience": {
+          "label": "Riding Experience Level",
+          "options": {
+            "beginner": "Complete Beginner",
+            "novice": "Some Experience (< 1 year)",
+            "intermediate": "Intermediate (1-5 years)",
+            "advanced": "Advanced (5+ years)",
+            "expert": "Expert/Professional"
+          }
+        }
+      },
+      "booking": {
+        "preferredDate": {
+          "label": "Preferred Date"
+        },
+        "preferredTime": {
+          "label": "Preferred Time",
+          "options": {
+            "09:00": "9:00 AM",
+            "11:00": "11:00 AM", 
+            "14:00": "2:00 PM",
+            "16:00": "4:00 PM",
+            "18:00": "6:00 PM (Weekend only)"
+          }
+        },
+        "participants": {
+          "label": "Number of Participants",
+          "options": {
+            "1": "1 Person",
+            "2": "2 People",
+            "3": "3 People", 
+            "4": "4 People",
+            "group": "Group (5+ people)"
+          }
+        },
+        "specialRequests": {
+          "label": "Special Requests or Notes",
+          "placeholder": "Any special requirements, dietary restrictions, or additional information..."
+        }
+      }
+    },
+    "summary": {
+      "title": "Booking Summary",
+      "labels": {
+        "experience": "Experience:",
+        "date": "Date:",
+        "time": "Time:",
+        "participants": "Participants:",
+        "totalAmount": "Total Amount:",
+        "notSelected": "Not selected"
+      }
+    },
+    "buttons": {
+      "previous": "Previous",
+      "continue": "Continue", 
+      "confirmBooking": "Confirm Booking",
+      "processing": "Processing..."
+    },
+    "success": {
+      "title": "Booking Confirmed!",
+      "description": "Thank you for your booking. We'll send you a confirmation email with all the details shortly.",
+      "newBooking": "Make Another Booking"
+    }
+  }
+}

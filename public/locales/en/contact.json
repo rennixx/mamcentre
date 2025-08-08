@@ -1,0 +1,76 @@
+{
+  "hero": {
+    "title": "Get In Touch",
+    "subtitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible."
+  },
+  "form": {
+    "title": "Send Us A Message",
+    "fields": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Enter your phone number"
+      },
+      "subject": {
+        "label": "Subject",
+        "placeholder": "What is your message about?"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Tell us more about your inquiry..."
+      }
+    },
+    "buttons": {
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "reset": "Clear Form"
+    },
+    "success": {
+      "title": "Message Sent Successfully!",
+      "description": "Thank you for contacting us. We'll get back to you within 24 hours."
+    }
+  },
+  "info": {
+    "location": {
+      "icon": "📍",
+      "title": "Visit Our Center",
+      "details": [
+        "123 Premium Drive",
+        "Luxury District, City",
+        "State 12345"
+      ]
+    },
+    "phone": {
+      "icon": "📞",
+      "title": "Call Us",
+      "details": [
+        "+1 (555) 123-4567",
+        "+1 (555) 987-6543"
+      ]
+    },
+    "email": {
+      "icon": "✉️",
+      "title": "Email Us",
+      "details": [
+        "info@luxuryequestrian.com",
+        "bookings@luxuryequestrian.com"
+      ]
+    },
+    "hours": {
+      "icon": "🕒",
+      "title": "Operating Hours",
+      "details": [
+        "Monday - Friday: 8:00 AM - 8:00 PM",
+        "Saturday: 7:00 AM - 9:00 PM",
+        "Sunday: 8:00 AM - 6:00 PM"
+      ]
+    }
+  }
+}

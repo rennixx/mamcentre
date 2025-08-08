@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "superTitle": "Premier Equestrian Excellence",
+    "title": "Where Champions Are Born",
+    "subtitle": "Experience the pinnacle of equestrian excellence at our world-renowned training facility. From beginners to Olympic hopefuls, we nurture every rider's journey with unmatched expertise and luxury.",
+    "stats": {
+      "years": {
+        "number": "15+",
+        "label": "Years Excellence"
+      },
+      "champions": {
+        "number": "500+", 
+        "label": "Champions Trained"
+      },
+      "horses": {
+        "number": "50+",
+        "label": "Premium Horses"
+      }
+    },
+    "features": {
+      "championship": {
+        "title": "Championship Training",
+        "description": "World-class instruction from Olympic-level trainers"
+      },
+      "eliteHorses": {
+        "title": "Elite Horses", 
+        "description": "Access to award-winning thoroughbreds and warmbloods"
+      },
+      "luxuryFacilities": {
+        "title": "Luxury Facilities",
+        "description": "State-of-the-art arenas with premium amenities"
+      },
+      "personalizedPrograms": {
+        "title": "Personalized Programs",
+        "description": "Custom training plans for every skill level"
+      }
+    },
+    "cta": {
+      "primary": "Begin Your Journey",
+      "watchStory": "Watch Our Story"
+    },
+    "scroll": {
+      "text": "Discover More"
+    }
+  }
+}

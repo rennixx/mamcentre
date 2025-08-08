@@ -1,0 +1,494 @@
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { luxuryTheme } from '../../constants/luxuryTheme';
+import { FloatingButton } from '../ui/LuxuryComponents';
+
+interface LuxuryHeaderProps {
+  className?: string;
+}
+
+const HeaderContainer = styled(motion.header)<{ scrolled: boolean }>`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: ${props => props.scrolled 
+    ? 'rgba(27, 54, 93, 0.95)' 
+    : 'rgba(27, 54, 93, 0.8)'
+  };
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: ${props => props.scrolled ? '0.8rem 0' : '1.2rem 0'};
+`;
+
+const HeaderContent = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  @media (min-width: 768px) {
+    padding: 0 3rem;
+  }
+  
+  @media (min-width: 1440px) {
+    max-width: 1600px;
+    padding: 0 4rem;
+  }
+  
+  @media (min-width: 1920px) {
+    max-width: 1800px;
+    padding: 0 5rem;
+  }
+  
+  @media (min-width: 2560px) {
+    max-width: 2200px;
+    padding: 0 6rem;
+  }
+  
+  @media (min-aspect-ratio: 21/9) {
+    max-width: 85vw;
+  }
+`;
+
+const Logo = styled(Link)`
+  font-family: ${luxuryTheme.typography.fonts.luxury};
+  font-size: 2.2rem;
+  font-weight: ${luxuryTheme.typography.weights.bold};
+  color: ${luxuryTheme.colors.white};
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  
+  background: linear-gradient(135deg, #D4AF37 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Add subtle text shadow for depth */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, #D4AF37 0%, #FFFFFF 100%);
+    transition: width 0.4s ease;
+    border-radius: 2px;
+  }
+  
+  &:hover {
+    transform: translateY(-1px);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    
+    &::after {
+      width: 100%;
+    }
+  }
+  
+  /* Responsive sizing */
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+`;
+
+const Navigation = styled.nav`
+  display: none;
+  align-items: center;
+  gap: 3rem;
+  
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+  
+  @media (min-width: 1440px) {
+    gap: 4rem;
+  }
+  
+  @media (min-width: 1920px) {
+    gap: 5rem;
+  }
+`;
+
+const NavLink = styled(Link)<{ isActive: boolean }>`
+  font-family: ${luxuryTheme.typography.fonts.primary};
+  color: ${props => props.isActive 
+    ? luxuryTheme.colors.gold.primary 
+    : luxuryTheme.colors.white
+  };
+  text-decoration: none;
+  font-weight: ${luxuryTheme.typography.weights.medium};
+  font-size: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: ${props => props.isActive ? '100%' : '0'};
+    height: 2px;
+    background: ${luxuryTheme.gradients.goldNavy};
+    transition: width 0.3s ease;
+  }
+  
+  &:hover {
+    color: ${luxuryTheme.colors.gold.primary};
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+`;
+
+const MobileMenuButton = styled(motion.button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: ${luxuryTheme.colors.white};
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  
+  @media (min-width: 1024px) {
+    display: none;
+  }
+`;
+
+const MobileMenu = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(27, 54, 93, 0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  z-index: 999;
+`;
+
+const MobileNavLink = styled(Link)<{ isActive: boolean }>`
+  font-family: ${luxuryTheme.typography.fonts.luxury};
+  color: ${props => props.isActive 
+    ? luxuryTheme.colors.gold.primary 
+    : luxuryTheme.colors.white
+  };
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: ${luxuryTheme.typography.weights.medium};
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: ${luxuryTheme.colors.gold.primary};
+    transform: scale(1.1);
+  }
+`;
+
+const CloseButton = styled(motion.button)`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: transparent;
+  border: none;
+  color: ${luxuryTheme.colors.white};
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  
+  &:hover {
+    color: ${luxuryTheme.colors.gold.primary};
+  }
+`;
+
+const navItems = [
+  { key: 'home', path: '/' },
+  { key: 'about', path: '/about' },
+  { key: 'services', path: '/services' },
+  { key: 'gallery', path: '/gallery' },
+  { key: 'contact', path: '/contact' },
+];
+
+const LanguageSwitcher = styled.div`
+  position: relative;
+  margin-right: 16px;
+`;
+
+const LanguageButton = styled.div`
+  background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 100%);
+  border: 2px solid #D4AF37;
+  border-radius: 8px;
+  padding: 10px 20px;
+  color: #0D1E56;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 100px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+`;
+
+const LanguageDropdown = styled(motion.div)`
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: rgba(27, 54, 93, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  min-width: 150px;
+  z-index: 1001;
+`;
+
+const LanguageOption = styled.div`
+  padding: 12px 16px;
+  color: ${luxuryTheme.colors.white};
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  
+  &:hover {
+    background: rgba(212, 175, 55, 0.2);
+    color: ${luxuryTheme.colors.gold.primary};
+  }
+  
+  &.active {
+    background: rgba(212, 175, 55, 0.3);
+    color: ${luxuryTheme.colors.gold.primary};
+  }
+`;
+
+export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
+  const { t, i18n } = useTranslation(['navigation', 'common']);
+  const location = useLocation();
+
+  const supportedLanguages = [
+    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'ar', label: 'العربية', flag: '🇮🇶' },
+    { code: 'ku', label: 'کوردی', flag: '☀️' }
+  ];
+
+  const currentLanguage = supportedLanguages.find(lang => lang.code === i18n.language) || supportedLanguages[0];
+
+  const toggleLanguageDropdown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setLanguageDropdownOpen(!languageDropdownOpen);
+  };
+
+  const selectLanguage = (languageCode: string) => {
+    i18n.changeLanguage(languageCode);
+    setLanguageDropdownOpen(false);
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (languageDropdownOpen && !target.closest('[data-language-switcher]')) {
+        setLanguageDropdownOpen(false);
+      }
+    };
+
+    if (languageDropdownOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [languageDropdownOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      <HeaderContainer
+        scrolled={scrolled}
+        className={className}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <HeaderContent>
+          <Logo to="/">
+            Mam Center
+          </Logo>
+          
+          <Navigation>
+            {navItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                isActive={location.pathname === item.path}
+              >
+                {t(`navigation:${item.key}`)}
+              </NavLink>
+            ))}
+          </Navigation>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {/* Language Switcher Dropdown */}
+            <LanguageSwitcher data-language-switcher>
+              <LanguageButton onClick={toggleLanguageDropdown}>
+                {currentLanguage.flag} {currentLanguage.code.toUpperCase()}
+                <span style={{ transform: languageDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>
+                  ▼
+                </span>
+              </LanguageButton>
+              
+              <AnimatePresence>
+                {languageDropdownOpen && (
+                  <LanguageDropdown
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {supportedLanguages.map((language) => (
+                      <LanguageOption
+                        key={language.code}
+                        className={language.code === i18n.language ? 'active' : ''}
+                        onClick={() => selectLanguage(language.code)}
+                      >
+                        <span>{language.flag}</span>
+                        <span>{language.label}</span>
+                      </LanguageOption>
+                    ))}
+                  </LanguageDropdown>
+                )}
+              </AnimatePresence>
+            </LanguageSwitcher>
+            
+            <FloatingButton
+              as={Link}
+              to="/booking"
+              size="sm"
+              variant="gold"
+              style={{ display: 'none' }}
+              className="desktop-only"
+            >
+              {t('navigation:booking')}
+            </FloatingButton>
+            
+            <MobileMenuButton
+              onClick={toggleMobileMenu}
+              whileTap={{ scale: 0.95 }}
+            >
+              ☰
+            </MobileMenuButton>
+          </div>
+        </HeaderContent>
+      </HeaderContainer>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <MobileMenu
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CloseButton
+              onClick={closeMobileMenu}
+              whileTap={{ scale: 0.95 }}
+            >
+              ✕
+            </CloseButton>
+            
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.path}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <MobileNavLink
+                  to={item.path}
+                  isActive={location.pathname === item.path}
+                  onClick={closeMobileMenu}
+                >
+                  {t(`navigation:${item.key}`)}
+                </MobileNavLink>
+              </motion.div>
+            ))}
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navItems.length * 0.1 }}
+            >
+              <FloatingButton
+                size="lg"
+                variant="gold"
+                onClick={closeMobileMenu}
+              >
+                {t('navigation:booking')}
+              </FloatingButton>
+            </motion.div>
+          </MobileMenu>
+        )}
+      </AnimatePresence>
+      
+      <style>{`
+        @media (min-width: 1024px) {
+          .desktop-only {
+            display: flex !important;
+          }
+        }
+      `}</style>
+    </>
+  );
+};
