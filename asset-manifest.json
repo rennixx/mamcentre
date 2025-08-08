@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/mamcentre/static/js/main.da652d8d.js",
+    "main.js": "/mamcentre/static/js/main.6b3f937a.js",
     "static/js/57.b60ce0c0.chunk.js": "/mamcentre/static/js/57.b60ce0c0.chunk.js",
     "static/js/453.e20aad9d.chunk.js": "/mamcentre/static/js/453.e20aad9d.chunk.js",
     "index.html": "/mamcentre/index.html",
     "static/media/getFetch.cjs": "/mamcentre/static/media/getFetch.c4cca45e22bc1b2c7d0d.cjs",
-    "main.da652d8d.js.map": "/mamcentre/static/js/main.da652d8d.js.map",
+    "main.6b3f937a.js.map": "/mamcentre/static/js/main.6b3f937a.js.map",
     "57.b60ce0c0.chunk.js.map": "/mamcentre/static/js/57.b60ce0c0.chunk.js.map",
     "453.e20aad9d.chunk.js.map": "/mamcentre/static/js/453.e20aad9d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.da652d8d.js"
+    "static/js/main.6b3f937a.js"
   ]
 }
