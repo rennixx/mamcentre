@@ -1,0 +1,60 @@
+{
+  "services": {
+    "title": "Premium Equestrian Services",
+    "subtitle": "Discover our comprehensive range of world-class equestrian services, each designed to elevate your riding experience to new heights.",
+    "list": {
+      "premiumRiding": {
+        "title": "Premium Riding Lessons",
+        "description": "Personalized instruction from world-class trainers for riders of all levels.",
+        "features": [
+          "Individual & Group Sessions",
+          "Professional Instructors", 
+          "Progressive Skill Development",
+          "Competition Preparation"
+        ],
+        "price": "From $150/session",
+        "details": "Our premium riding lessons are designed to elevate your equestrian skills through expert instruction and personalized attention. Each session is crafted to your individual needs and goals."
+      },
+      "competition": {
+        "title": "Competition Training",
+        "description": "Elite preparation for equestrian competitions at all levels.",
+        "features": [
+          "Advanced Techniques",
+          "Mental Preparation", 
+          "Performance Analysis",
+          "Show Preparation"
+        ],
+        "price": "From $200/session",
+        "details": "Our competition training program transforms dedicated riders into champions through rigorous preparation, advanced techniques, and mental conditioning."
+      },
+      "horseCare": {
+        "title": "Horse Care Education",
+        "description": "Comprehensive education on horse care, health, and management.",
+        "features": [
+          "Health & Nutrition",
+          "Grooming Techniques",
+          "Stable Management", 
+          "Emergency Care"
+        ],
+        "price": "From $100/session",
+        "details": "Learn the art and science of horse care through hands-on education that covers everything from daily care routines to advanced health management."
+      },
+      "therapeutic": {
+        "title": "Therapeutic Riding",
+        "description": "Healing and therapy through the powerful bond with horses.",
+        "features": [
+          "Certified Therapists",
+          "Adaptive Equipment",
+          "Individual Programs",
+          "Progress Tracking"
+        ],
+        "price": "From $120/session", 
+        "details": "Experience the transformative power of therapeutic riding with our certified instructors and specially trained therapy horses in a supportive environment."
+      }
+    }
+  },
+  "cta": {
+    "button": "View All Services",
+    "learnMore": "Learn More"
+  }
+}

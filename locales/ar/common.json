@@ -1,0 +1,75 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "gallery": "المعرض",
+    "booking": "احجز الآن",
+    "contact": "تواصل معنا"
+  },
+  "buttons": {
+    "learnMore": "اعرف المزيد",
+    "getStarted": "ابدأ الآن",
+    "bookNow": "احجز الآن",
+    "viewMore": "شاهد المزيد",
+    "readMore": "اقرأ المزيد",
+    "contactUs": "تواصل معنا",
+    "submit": "إرسال",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق"
+  },
+  "forms": {
+    "required": "هذا الحقل مطلوب",
+    "invalidEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "invalidPhone": "يرجى إدخال رقم هاتف صحيح",
+    "success": "نجح!",
+    "error": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "loading": "جاري التحميل...",
+    "submitting": "جاري الإرسال...",
+    "processing": "جاري المعالجة..."
+  },
+  "time": {
+    "days": {
+      "monday": "الاثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء",
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت",
+      "sunday": "الأحد"
+    },
+    "months": {
+      "january": "يناير",
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو",
+      "july": "يوليو",
+      "august": "أغسطس",
+      "september": "سبتمبر",
+      "october": "أكتوبر",
+      "november": "نوفمبر",
+      "december": "ديسمبر"
+    }
+  },
+  "footer": {
+    "quickLinks": "روابط سريعة",
+    "services": "الخدمات",
+    "contact": "معلومات الاتصال",
+    "followUs": "تابعنا",
+    "newsletter": {
+      "title": "ابق على اطلاع",
+      "description": "اشترك في نشرتنا الإخبارية لآخر الأخبار والتحديثات",
+      "placeholder": "أدخل بريدك الإلكتروني",
+      "subscribe": "اشتراك",
+      "success": "شكراً لاشتراكك!"
+    },
+    "copyright": "© 2024 مركز mCenter. جميع الحقوق محفوظة.",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة"
+  }
+}

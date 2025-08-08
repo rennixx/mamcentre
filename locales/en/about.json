@@ -1,0 +1,56 @@
+{
+  "about": {
+    "title": "About Mam Center",
+    "subtitle": "Crafting Excellence Since 1998",
+    "description": "At Mam Center, we believe that the bond between rider and horse transcends sport—it's an art form, a lifestyle, and a journey toward excellence that we are honored to guide.",
+    "values": {
+      "excellence": {
+        "title": "Excellence",
+        "description": "We pursue perfection in every aspect of training, from our world-class facilities to our championship-winning instructors."
+      },
+      "luxury": {
+        "title": "Luxury",
+        "description": "Experience unparalleled comfort and sophistication in our premium amenities and personalized service approach."
+      },
+      "partnership": {
+        "title": "Partnership", 
+        "description": "Building lasting relationships between riders, horses, and trainers through trust, respect, and shared passion."
+      },
+      "innovation": {
+        "title": "Innovation",
+        "description": "Embracing cutting-edge training techniques and technology to enhance the equestrian learning experience."
+      }
+    },
+    "stats": {
+      "experience": {
+        "number": "25+",
+        "label": "Years of Excellence",
+        "description": "Decades of proven training success"
+      },
+      "champions": {
+        "number": "750+", 
+        "label": "Champions Trained",
+        "description": "Riders who achieved their dreams"
+      },
+      "facilities": {
+        "number": "12",
+        "label": "Premium Facilities", 
+        "description": "State-of-the-art training venues"
+      },
+      "horses": {
+        "number": "60+",
+        "label": "Elite Horses",
+        "description": "Championship bloodline horses"
+      }
+    },
+    "founder": {
+      "name": "Sarah Johnson",
+      "title": "Founder & Head Trainer",
+      "description": "Olympic medalist with over 20 years of experience in developing world-class equestrian talent."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "To provide an unparalleled equestrian experience that transforms passion into championship performance."
+    }
+  }
+}

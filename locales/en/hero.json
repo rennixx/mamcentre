@@ -1,0 +1,15 @@
+{
+  "title": "Experience Equestrian Excellence",
+  "subtitle": "Premier horse riding lessons and training facilities",
+  "description": "Join us at Mam Center for world-class equestrian training in a luxurious setting. Whether you're a beginner or advanced rider, we provide expert instruction and exceptional facilities.",
+  "cta": {
+    "primary": "Start Your Journey",
+    "secondary": "Explore Our Services"
+  },
+  "stats": {
+    "experience": "{{years}}+ Years Experience",
+    "riders": "{{count}}+ Happy Riders", 
+    "horses": "{{count}}+ Premium Horses",
+    "instructors": "{{count}}+ Expert Instructors"
+  }
+}
