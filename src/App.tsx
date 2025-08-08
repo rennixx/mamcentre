@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { OptimizedGlobalStyles } from './styles/OptimizedGlobalStyles';
 import { Layout } from './components/layout/Layout';
-import { LuxuryHomePage } from './pages/home/LuxuryHomePage';
+import { SimpleHomePage } from './components/SimpleHomePage';
+import { SimpleServicesPage } from './components/SimpleServicesPage';
 import { LuxuryAboutPage } from './pages/about/LuxuryAboutPage';
 import { LuxuryServicesPage } from './pages/services/LuxuryServicesPage';
 import { LuxuryGalleryPage } from './pages/gallery/LuxuryGalleryPage';
@@ -31,9 +32,9 @@ function App() {
       <OptimizedGlobalStyles />
       <Layout>
         <Routes>
-          <Route path="/" element={<LuxuryHomePage />} />
+          <Route path="/" element={<SimpleHomePage />} />
           <Route path="/about" element={<LuxuryAboutPage />} />
-          <Route path="/services" element={<LuxuryServicesPage />} />
+          <Route path="/services" element={<SimpleServicesPage />} />
           <Route path="/booking" element={<BookingPage />} />
           <Route path="/booking/:id" element={<BookingViewPage />} />
           <Route path="/my-bookings" element={<BookingViewPage />} />
