@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/mamcentre">
       <OptimizedGlobalStyles />
       <Layout>
         <Routes>
