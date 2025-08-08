@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { OptimizedGlobalStyles } from './styles/OptimizedGlobalStyles';
 import { Layout } from './components/layout/Layout';
 import { LuxuryHomePage } from './pages/home/LuxuryHomePage';
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="/mamcentre">
+    <Router>
       <OptimizedGlobalStyles />
       <Layout>
         <Routes>
