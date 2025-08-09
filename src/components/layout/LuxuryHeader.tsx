@@ -179,9 +179,14 @@ const MobileMenu = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 3rem;
+  justify-content: flex-start;
+  padding-top: 6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
   z-index: 999;
+  overflow: hidden;
+  touch-action: none;
 `;
 
 const MobileNavLink = styled(Link)<{ isActive: boolean }>`
@@ -191,13 +196,38 @@ const MobileNavLink = styled(Link)<{ isActive: boolean }>`
     : luxuryTheme.colors.white
   };
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: ${luxuryTheme.typography.weights.medium};
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin: 0.6rem 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid ${props => props.isActive 
+    ? `rgba(212, 175, 55, 0.4)` 
+    : 'transparent'
+  };
+  background: ${props => props.isActive 
+    ? `rgba(212, 175, 55, 0.08)` 
+    : 'transparent'
+  };
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  min-width: auto;
+  text-align: center;
+  text-transform: capitalize;
+  width: 200px;
   
   &:hover {
     color: ${luxuryTheme.colors.gold.primary};
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.12);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0px);
   }
 `;
 
@@ -206,15 +236,31 @@ const CloseButton = styled(motion.button)`
   top: 2rem;
   right: 2rem;
   background: transparent;
-  border: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
   color: ${luxuryTheme.colors.white};
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.8rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   
   &:hover {
     color: ${luxuryTheme.colors.gold.primary};
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.08);
+    transform: rotate(90deg);
   }
+`;
+
+const MobileMenuContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 320px;
+  gap: 1rem;
+  min-height: auto;
 `;
 
 const navItems = [
@@ -342,12 +388,49 @@ export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Cleanup: restore scrolling when component unmounts or menu is open
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    };
+  }, []);
+
+  // Also restore scrolling when menu closes via external means
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    }
+  }, [mobileMenuOpen]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+    // Prevent background scrolling when mobile menu is open
+    if (!mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+    }
   };
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+    // Re-enable scrolling when menu closes
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.height = '';
   };
 
   return (
@@ -434,10 +517,15 @@ export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <MobileMenu
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: '0%' }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ 
+              type: 'spring',
+              damping: 25,
+              stiffness: 200,
+              duration: 0.4
+            }}
           >
             <CloseButton
               onClick={closeMobileMenu}
@@ -446,36 +534,51 @@ export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
               ✕
             </CloseButton>
             
-            {navItems.map((item, index) => (
+            <MobileMenuContent>
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.path}
+                  initial={{ opacity: 0, x: 50, y: 20 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ 
+                    delay: 0.2 + (index * 0.1),
+                    type: 'spring',
+                    damping: 20,
+                    stiffness: 300
+                  }}
+                >
+                  <MobileNavLink
+                    to={item.path}
+                    isActive={location.pathname === item.path}
+                    onClick={closeMobileMenu}
+                  >
+                    {t(`navigation:${item.key}`)}
+                  </MobileNavLink>
+                </motion.div>
+              ))}
+              
               <motion.div
-                key={item.path}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, x: 50, y: 20 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ 
+                  delay: 0.2 + (navItems.length * 0.1),
+                  type: 'spring',
+                  damping: 20,
+                  stiffness: 300
+                }}
+                style={{ marginTop: '1rem' }}
               >
-                <MobileNavLink
-                  to={item.path}
-                  isActive={location.pathname === item.path}
+                <FloatingButton
+                  as={Link}
+                  to="/booking"
+                  size="lg"
+                  variant="gold"
                   onClick={closeMobileMenu}
                 >
-                  {t(`navigation:${item.key}`)}
-                </MobileNavLink>
+                  {t('navigation:booking')}
+                </FloatingButton>
               </motion.div>
-            ))}
-            
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navItems.length * 0.1 }}
-            >
-              <FloatingButton
-                size="lg"
-                variant="gold"
-                onClick={closeMobileMenu}
-              >
-                {t('navigation:booking')}
-              </FloatingButton>
-            </motion.div>
+            </MobileMenuContent>
           </MobileMenu>
         )}
       </AnimatePresence>

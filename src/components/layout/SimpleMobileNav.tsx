@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -71,7 +71,7 @@ const MobileMenu = styled.div<{ isOpen: boolean }>`
   padding: 80px 0 40px;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
 `;
 
 const MenuOverlay = styled.div<{ isOpen: boolean }>`
@@ -127,6 +127,11 @@ const MenuLogo = styled.h2`
 const MenuNavigation = styled.nav`
   flex: 1;
   padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 60vh;
+  overflow: hidden;
 `;
 
 const MenuLink = styled(Link)`
@@ -208,6 +213,24 @@ interface SimpleMobileNavProps {
 }
 
 export const SimpleMobileNav: React.FC<SimpleMobileNavProps> = ({ isOpen, onToggle }) => {
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    
+    // Cleanup function to restore scrolling
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  const handleMenuClick = () => {
+    onToggle();
+  };
+
   return (
     <>
       <HamburgerButton onClick={onToggle}>
@@ -224,16 +247,15 @@ export const SimpleMobileNav: React.FC<SimpleMobileNavProps> = ({ isOpen, onTogg
         </MenuHeader>
         
         <MenuNavigation>
-          <MenuLink to="/" onClick={onToggle}>Home</MenuLink>
-          <MenuLink to="/about" onClick={onToggle}>About</MenuLink>
-          <MenuLink to="/services" onClick={onToggle}>Services</MenuLink>
-          <MenuLink to="/gallery" onClick={onToggle}>Gallery</MenuLink>
-          <MenuLink to="/contact" onClick={onToggle}>Contact</MenuLink>
-          <MenuLink to="/my-bookings" onClick={onToggle}>My Bookings</MenuLink>
+          <MenuLink to="/" onClick={handleMenuClick}>Home</MenuLink>
+          <MenuLink to="/about" onClick={handleMenuClick}>About</MenuLink>
+          <MenuLink to="/services" onClick={handleMenuClick}>Services</MenuLink>
+          <MenuLink to="/gallery" onClick={handleMenuClick}>Gallery</MenuLink>
+          <MenuLink to="/contact" onClick={handleMenuClick}>Contact</MenuLink>
         </MenuNavigation>
         
         <MenuFooter>
-          <ContactButton as={Link} to="/booking" onClick={onToggle}>
+          <ContactButton as={Link} to="/booking" onClick={handleMenuClick}>
             Book Now
           </ContactButton>
         </MenuFooter>
