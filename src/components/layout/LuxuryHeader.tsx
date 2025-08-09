@@ -522,9 +522,44 @@ export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
             
             <MobileMenuButton
               onClick={toggleMobileMenu}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
               whileTap={{ scale: 0.95 }}
             >
-              ☰
+              <motion.span
+                initial={false}
+                animate={mobileMenuOpen ? 'open' : 'closed'}
+                variants={{
+                  closed: { rotate: 0 },
+                  open: { rotate: 90 }
+                }}
+                style={{ display: 'inline-block', width: 28, height: 28 }}
+              >
+                {/* Hamburger/X icon animation */}
+                <motion.svg
+                  width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"
+                >
+                  <motion.rect
+                    x="4" y="8" width="20" height="2.5" rx="1.25"
+                    fill="currentColor"
+                    variants={{
+                      closed: { rotate: 0, y: 0 },
+                      open: { rotate: 45, y: 10 }
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    animate={mobileMenuOpen ? 'open' : 'closed'}
+                  />
+                  <motion.rect
+                    x="4" y="17" width="20" height="2.5" rx="1.25"
+                    fill="currentColor"
+                    variants={{
+                      closed: { rotate: 0, y: 0 },
+                      open: { rotate: -45, y: -7 }
+                    }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    animate={mobileMenuOpen ? 'open' : 'closed'}
+                  />
+                </motion.svg>
+              </motion.span>
             </MobileMenuButton>
           </div>
         </HeaderContent>
@@ -544,12 +579,7 @@ export const LuxuryHeader: React.FC<LuxuryHeaderProps> = ({ className }) => {
               duration: 0.4
             }}
           >
-            <CloseButton
-              onClick={closeMobileMenu}
-              whileTap={{ scale: 0.95 }}
-            >
-              ✕
-            </CloseButton>
+
             
             <MobileMenuContent>
               {navItems.map((item, index) => (

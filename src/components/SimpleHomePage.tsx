@@ -40,29 +40,7 @@ const HeroSection = styled.section`
   background: transparent;
   margin-bottom: 0;
   
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -40px;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.5) 0%,
-      rgba(0, 0, 0, 0.4) 15%,
-      rgba(0, 0, 0, 0.3) 25%,
-      rgba(0, 0, 0, 0.2) 35%,
-      rgba(0, 0, 0, 0.1) 45%,
-      rgba(0, 0, 0, 0.1) 55%,
-      rgba(0, 0, 0, 0.2) 65%,
-      rgba(0, 0, 0, 0.3) 75%,
-      rgba(0, 0, 0, 0.4) 85%,
-      rgba(0, 0, 0, 0.5) 100%
-    );
-    filter: blur(3px);
-    z-index: -1;
-  }
+
 
   @media (min-width: 768px) {
     padding: 10rem 4rem 8rem;
@@ -143,28 +121,7 @@ const AboutSection = styled.section`
   margin: 0;
   border: none;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: -40px;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.1) 20%,
-      rgba(0, 0, 0, 0.2) 30%,
-      rgba(0, 0, 0, 0.3) 40%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.3) 60%,
-      rgba(0, 0, 0, 0.2) 70%,
-      rgba(0, 0, 0, 0.1) 80%,
-      rgba(0, 0, 0, 0) 100%
-    );
-    filter: blur(1.5px);
-    z-index: 0;
-  }
+
   
   @media (min-width: 768px) {
     padding: 8rem 4rem;
@@ -264,7 +221,6 @@ const FeatureCard = styled.div`
   text-align: center;
   padding: 2rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
   border-radius: 20px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: 1px solid rgba(255, 255, 255, 0.2);
