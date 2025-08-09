@@ -26,7 +26,7 @@ const HeaderContainer = styled(motion.header)<{ scrolled: boolean }>`
 const HeaderContent = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -96,8 +96,14 @@ const Logo = styled(Link)`
   
   /* Responsive sizing */
   @media (max-width: 768px) {
-    font-size: 1.8rem;
-    letter-spacing: 0.5px;
+    font-size: 1.5rem;
+    letter-spacing: 0.3px;
+  }
+  
+  /* Smaller size for larger mobile phones */
+  @media (max-width: 430px) {
+    font-size: 1.4rem;
+    letter-spacing: 0.2px;
   }
 `;
 
@@ -180,9 +186,9 @@ const MobileMenu = styled(motion.div)`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 6rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-top: 5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   padding-bottom: 2rem;
   z-index: 999;
   overflow: hidden;
@@ -196,12 +202,12 @@ const MobileNavLink = styled(Link)<{ isActive: boolean }>`
     : luxuryTheme.colors.white
   };
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: ${luxuryTheme.typography.weights.medium};
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  margin: 0.6rem 0;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
+  margin: 0.5rem 0;
+  padding: 0.3rem 0.6rem;
+  border-radius: 18px;
   border: 1px solid ${props => props.isActive 
     ? `rgba(212, 175, 55, 0.4)` 
     : 'transparent'
@@ -216,7 +222,7 @@ const MobileNavLink = styled(Link)<{ isActive: boolean }>`
   min-width: auto;
   text-align: center;
   text-transform: capitalize;
-  width: 200px;
+  width: 160px;
   
   &:hover {
     color: ${luxuryTheme.colors.gold.primary};
@@ -258,7 +264,7 @@ const MobileMenuContent = styled.div`
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  max-width: 320px;
+  max-width: 250px;
   gap: 1rem;
   min-height: auto;
 `;
@@ -273,30 +279,41 @@ const navItems = [
 
 const LanguageSwitcher = styled.div`
   position: relative;
-  margin-right: 16px;
+  margin-right: 12px;
+  
+  @media (max-width: 768px) {
+    margin-right: 8px;
+  }
 `;
 
 const LanguageButton = styled.div`
   background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 100%);
   border: 2px solid #D4AF37;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 8px 16px;
   color: #0D1E56;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  min-width: 100px;
+  min-width: 80px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
   
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 6px 12px;
+    font-size: 13px;
+    min-width: 70px;
+    gap: 4px;
   }
 `;
 
