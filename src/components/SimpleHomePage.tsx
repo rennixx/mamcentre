@@ -1,153 +1,234 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HomePageContainer = styled.div`
-  background: #1B365D;
-  color: #FFFFFF;
+const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 `;
 
-const SimpleHeroContainer = styled.div`
+const BackgroundVideo = styled.video`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(1.1) contrast(1.1) saturate(1.2);
+`;
+
+const PageContent = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 100%;
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #1B365D 0%,
-    #2A4A6B 50%,
-    #1A2332 100%
-  );
+  background: transparent;
+`;
+
+const HeroSection = styled.section`
+  position: relative;
+  color: white;
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+  overflow: hidden;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
-  text-align: center;
-  position: relative;
+  background: transparent;
+  margin-bottom: 0;
   
-  &::before {
+  &::after {
     content: '';
     position: absolute;
-    top: 0;
+    bottom: -40px;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 60%),
-      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
-    pointer-events: none;
+    height: 80px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.4) 15%,
+      rgba(0, 0, 0, 0.3) 25%,
+      rgba(0, 0, 0, 0.2) 35%,
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.1) 55%,
+      rgba(0, 0, 0, 0.2) 65%,
+      rgba(0, 0, 0, 0.3) 75%,
+      rgba(0, 0, 0, 0.4) 85%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    filter: blur(3px);
+    z-index: -1;
+  }
+
+  @media (min-width: 768px) {
+    padding: 10rem 4rem 8rem;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 12rem 6rem 10rem;
   }
 `;
 
 const HeroContent = styled.div`
-  max-width: 800px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  @media (min-width: 1440px) {
+    max-width: 1600px;
+  }
+  
+  @media (min-width: 1920px) {
+    max-width: 1800px;
+  }
 `;
 
 const HeroTitle = styled.h1`
-  font-family: 'Playfair Display', serif;
-  font-size: 4rem;
+  font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #FFFFFF;
-  font-weight: 700;
-  line-height: 1.2;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 20px rgba(0, 0, 0, 0.7);
   
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
+  @media (min-width: 768px) {
+    font-size: 4rem;
+  }
+
+  @media (min-width: 1200px) {
+    font-size: 5rem;
+  }
+  
+  @media (min-width: 1440px) {
+    font-size: 5.5rem;
+  }
+  
+  @media (min-width: 1920px) {
+    font-size: 6rem;
   }
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: 1.5rem;
-  margin-bottom: 3rem;
-  color: #D4AF37;
-  font-weight: 400;
-  line-height: 1.4;
-`;
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.95;
+  line-height: 1.6;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
 
-const CTAButton = styled.button`
-  background: linear-gradient(135deg, #D4AF37 0%, #E5C659 100%);
-  color: #1B365D;
-  border: none;
-  padding: 1.2rem 2.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+  @media (min-width: 768px) {
+    font-size: 1.5rem;
+  }
   
-  &:hover {
-    background: linear-gradient(135deg, #E5C659 0%, #D4AF37 100%);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(212, 175, 55, 0.4);
+  @media (min-width: 1440px) {
+    font-size: 1.6rem;
+    max-width: 1000px;
+  }
+  
+  @media (min-width: 1920px) {
+    font-size: 1.75rem;
+    max-width: 1200px;
   }
 `;
 
-// About Section
 const AboutSection = styled.section`
   padding: 6rem 2rem;
+  background: transparent;
+  position: relative;
+  margin: 0;
+  border: none;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.1) 20%,
+      rgba(0, 0, 0, 0.2) 30%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.3) 60%,
+      rgba(0, 0, 0, 0.2) 70%,
+      rgba(0, 0, 0, 0.1) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    filter: blur(1.5px);
+    z-index: 0;
+  }
+  
+  @media (min-width: 768px) {
+    padding: 8rem 4rem;
+  }
+`;
+
+const AboutContent = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   text-align: center;
   
   @media (min-width: 1440px) {
     max-width: 1600px;
-    padding: 8rem 4rem;
   }
   
   @media (min-width: 1920px) {
     max-width: 1800px;
-    padding: 10rem 5rem;
   }
 `;
 
 const SectionTitle = styled.h2`
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  color: #D4AF37;
+  font-size: 2.5rem;
+  color: #ffffff;
   margin-bottom: 2rem;
-  
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-  
-  @media (min-width: 1440px) {
-    font-size: 3.5rem;
-  }
-  
-  @media (min-width: 1920px) {
-    font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 20px rgba(0, 0, 0, 0.7);
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
   }
 `;
 
 const AboutText = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.8;
-  margin-bottom: 2rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
+  
+  @media (min-width: 768px) {
+    font-size: 1.25rem;
+  }
   
   @media (min-width: 1440px) {
     font-size: 1.3rem;
-    max-width: 900px;
+    max-width: 1000px;
   }
   
   @media (min-width: 1920px) {
     font-size: 1.4rem;
-    max-width: 1000px;
+    max-width: 1200px;
   }
 `;
 
-// Features Section
 const FeaturesSection = styled.section`
   padding: 6rem 2rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
+  position: relative;
+  margin: 0;
+  border: none;
   
-  @media (min-width: 1440px) {
+  @media (min-width: 768px) {
     padding: 8rem 4rem;
-  }
-  
-  @media (min-width: 1920px) {
-    padding: 10rem 5rem;
   }
 `;
 
@@ -155,107 +236,195 @@ const FeaturesGrid = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+  
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+  }
   
   @media (min-width: 1440px) {
     max-width: 1600px;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2.5rem;
+    gap: 4rem;
   }
   
   @media (min-width: 1920px) {
     max-width: 1800px;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 3rem;
+    gap: 5rem;
   }
 `;
 
 const FeatureCard = styled.div`
-  background: rgba(255, 255, 255, 0.08);
-  padding: 2.5rem 2rem;
-  border-radius: 16px;
   text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
   &:hover {
     transform: translateY(-8px);
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: rgba(212, 175, 55, 0.5);
   }
 `;
 
 const FeatureIcon = styled.div`
-  font-size: 3rem;
   margin-bottom: 1.5rem;
 `;
 
 const FeatureTitle = styled.h3`
-  font-size: 1.5rem;
-  color: #D4AF37;
+  font-size: 1.25rem;
+  color: #ffffff;
   margin-bottom: 1rem;
-  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
 `;
 
 const FeatureDescription = styled.p`
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
-  color: #FFFFFF;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7), 1px 1px 10px rgba(0, 0, 0, 0.5);
+`;
+
+const CallToActionSection = styled.section`
+  background: transparent;
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  border: none;
+  
+  @media (min-width: 768px) {
+    padding: 8rem 4rem;
+  }
+`;
+
+const CTATitle = styled.h2`
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 20px rgba(0, 0, 0, 0.7);
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+`;
+
+const CTADescription = styled.p`
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.95;
+  line-height: 1.6;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
+`;
+
+const CTAButton = styled.button`
+  background: #D4AF37;
+  color: #1B365D;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  }
 `;
 
 export const SimpleHomePage: React.FC = () => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      console.log('Video element found, attempting to play...');
+      video.play().catch(error => {
+        console.log('Video autoplay failed:', error);
+      });
+    }
+  }, []);
+
   const features = [
     {
-      icon: "🐎",
-      title: "Expert Horse Training",
-      description: "Professional training programs designed to bring out the best in every horse, from basic ground work to advanced performance."
+      icon: <span style={{fontSize: '2rem', color: '#D4AF37'}}>🐎</span>,
+      title: "Professional Horse Riding",
+      description: "Expert instruction for all levels - from complete beginners to advanced riders. Our certified trainers provide personalized lessons focusing on safety, technique, and confidence building."
     },
     {
-      icon: "🏆",
-      title: "Competition Ready",
-      description: "Prepare your horse for success in competitions with our specialized training and conditioning programs."
+      icon: <span style={{fontSize: '2rem', color: '#D4AF37'}}>🏆</span>,
+      title: "Championship Show Jumping",
+      description: "Elite show jumping training with competition-grade facilities. We prepare riders for regional and national competitions with professional coaching and top-tier horses."
     },
     {
-      icon: "🌟",
-      title: "Premium Facilities",
-      description: "State-of-the-art equestrian facilities with modern amenities and spacious environments for optimal horse care."
+      icon: <span style={{fontSize: '2rem', color: '#D4AF37'}}>🏠</span>,
+      title: "Premium Stable Rentals", 
+      description: "Luxury event hosting at our pristine stables. Perfect for corporate events, private celebrations, and special gatherings with full-service amenities and catering options."
     },
     {
-      icon: "👨‍🏫",
-      title: "Professional Instructors",
-      description: "Learn from experienced professionals who are passionate about horses and dedicated to your success."
+      icon: <span style={{fontSize: '2rem', color: '#D4AF37'}}>☕</span>,
+      title: "Baran Coffee Experience",
+      description: "Our signature café offers artisanal coffee, fresh pastries, and light meals in a unique stable-side setting. The perfect spot to relax and connect with fellow equestrian enthusiasts."
     }
   ];
 
   return (
-    <HomePageContainer>
-      <SimpleHeroContainer>
-        <HeroContent>
-          <HeroTitle>Welcome to Mam Center</HeroTitle>
-          <HeroSubtitle>Premium Equestrian Excellence</HeroSubtitle>
-          <CTAButton>Explore Our Services</CTAButton>
-        </HeroContent>
-      </SimpleHeroContainer>
+    <Container>
+      <BackgroundVideo 
+        ref={videoRef}
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        preload="auto"
+      >
+        <source src={require('../assets/IMG_2349.MP4')} type="video/mp4" />
+        <source src={require('../assets/IMG_2711.MP4')} type="video/mp4" />
+        <source src={require('../assets/IMG_4270.MP4')} type="video/mp4" />
+      </BackgroundVideo>
+      
+      <PageContent>
+        <HeroSection>
+          <HeroContent>
+            <HeroTitle>Welcome to Mam Center</HeroTitle>
+            <HeroSubtitle>
+              Professional Equestrian Excellence in the Heart of Nature - Where Champions Are Made and Dreams Take Flight
+            </HeroSubtitle>
+          </HeroContent>
+        </HeroSection>
 
-      <AboutSection>
-        <SectionTitle>Excellence in Equestrian Care</SectionTitle>
-        <AboutText>
-          At Mam Center, we are dedicated to providing the highest standard of equestrian services. 
-          Our experienced team combines traditional horsemanship with modern training techniques to 
-          ensure both horse and rider achieve their full potential.
-        </AboutText>
-        <AboutText>
-          With years of expertise in horse training, riding instruction, and equestrian facility management, 
-          we offer a comprehensive approach to horse care and development.
-        </AboutText>
-      </AboutSection>
+        <AboutSection>
+          <AboutContent>
+            <SectionTitle>About Mam Center</SectionTitle>
+            <AboutText>
+              Mam center is a private equestrian club that provides services to horse lovers, including horse riding and show jumping courses for women, men and children of all kinds, and how to properly deal with horses with high professionalism and creating a social environment for horse lovers, their families and friends.
+            </AboutText>
+          </AboutContent>
+        </AboutSection>
 
         <FeaturesSection>
-        <div style={{ textAlign: 'center', maxWidth: '1400px', margin: '0 auto' }}>
-          <SectionTitle>Why Choose Mam Center</SectionTitle>
-          <FeaturesGrid>
+          <AboutContent>
+            <SectionTitle>Our Services</SectionTitle>
+            <FeaturesGrid>
             {features.map((feature, index) => (
               <FeatureCard key={index}>
                 <FeatureIcon>{feature.icon}</FeatureIcon>
@@ -264,8 +433,19 @@ export const SimpleHomePage: React.FC = () => {
               </FeatureCard>
             ))}
           </FeaturesGrid>
-        </div>
+        </AboutContent>
       </FeaturesSection>
-    </HomePageContainer>
+
+      <CallToActionSection>
+        <CTATitle>Ready to Begin Your Journey?</CTATitle>
+        <CTADescription>
+          Join our community and discover the joy of horse riding in a safe, professional, and welcoming environment.
+        </CTADescription>
+        <CTAButton onClick={() => window.location.href = '#/booking'}>
+          Book Your Experience
+        </CTAButton>
+      </CallToActionSection>
+      </PageContent>
+    </Container>
   );
 };

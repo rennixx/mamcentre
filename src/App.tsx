@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { OptimizedGlobalStyles } from './styles/OptimizedGlobalStyles';
-import { Layout } from './components/layout/Layout';
+import { SimpleLayout } from './components/layout/SimpleLayout';
 import { SimpleHomePage } from './components/SimpleHomePage';
 import { SimpleServicesPage } from './components/SimpleServicesPage';
 import { LuxuryAboutPage } from './pages/about/LuxuryAboutPage';
@@ -30,18 +30,17 @@ function App() {
   return (
     <Router>
       <OptimizedGlobalStyles />
-      <Layout>
+            <SimpleLayout>
         <Routes>
           <Route path="/" element={<SimpleHomePage />} />
-          <Route path="/about" element={<LuxuryAboutPage />} />
           <Route path="/services" element={<SimpleServicesPage />} />
-          <Route path="/booking" element={<BookingPage />} />
-          <Route path="/booking/:id" element={<BookingViewPage />} />
-          <Route path="/my-bookings" element={<BookingViewPage />} />
+          <Route path="/about" element={<LuxuryAboutPage />} />
           <Route path="/gallery" element={<LuxuryGalleryPage />} />
           <Route path="/contact" element={<LuxuryContactPage />} />
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/booking-view" element={<BookingViewPage />} />
         </Routes>
-      </Layout>
+      </SimpleLayout>
     </Router>
   );
 }

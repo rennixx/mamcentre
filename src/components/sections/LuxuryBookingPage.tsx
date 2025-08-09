@@ -17,18 +17,40 @@ import {
 } from '../../hooks/useOptimizedAnimations';
 
 const BookingContainer = styled(LuxurySection)`
-  background: linear-gradient(
-    135deg,
-    ${luxuryTheme.colors.primary.navy} 0%,
-    #0F1419 25%,
-    ${luxuryTheme.colors.primary.navyLight} 50%,
-    #1A2332 75%,
-    ${luxuryTheme.colors.primary.navy} 100%
-  );
   position: relative;
   padding: 6rem 2rem;
   overflow: hidden;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const BookingVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+`;
+
+const BookingOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(27, 54, 93, 0.8) 0%,
+    rgba(15, 20, 25, 0.7) 25%,
+    rgba(26, 35, 50, 0.8) 50%,
+    rgba(26, 35, 50, 0.7) 75%,
+    rgba(27, 54, 93, 0.8) 100%
+  );
+  z-index: -1;
   
   &::before {
     content: '';
@@ -39,8 +61,7 @@ const BookingContainer = styled(LuxurySection)`
     bottom: 0;
     background: 
       radial-gradient(circle at 25% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 60%),
-      radial-gradient(circle at 75% 70%, rgba(192, 192, 192, 0.1) 0%, transparent 60%),
-      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 80%);
+      radial-gradient(circle at 75% 70%, rgba(192, 192, 192, 0.1) 0%, transparent 60%);
     will-change: opacity;
   }
 `;
@@ -607,6 +628,12 @@ export const LuxuryBookingPage: React.FC = () => {
 
   return (
     <BookingContainer ref={containerRef as any}>
+      <BookingVideo autoPlay muted loop playsInline>
+        <source src={require('../../assets/IMG_2349.MP4')} type="video/mp4" />
+        <source src={require('../../assets/IMG_3117.MOV')} type="video/quicktime" />
+        Your browser does not support the video tag.
+      </BookingVideo>
+      <BookingOverlay />
       <ParticleBackground />
       
       <BookingContent>

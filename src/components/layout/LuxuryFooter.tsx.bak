@@ -1,0 +1,239 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { FaInstagram, FaFacebook, FaTiktok, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+
+// Icon wrapper component to fix TypeScript issues
+const IconWrapper = ({ children }: { children: React.ReactNode }) => <span>{children}</span>;
+
+interface LuxuryFooterProps {
+  className?: string;
+}
+
+const FooterContainer = styled.footer`
+  background-color: #1B365D;
+  color: #FFFFFF;
+  padding: 4rem 0 2rem;
+  margin-top: auto;
+`;
+
+const FooterContent = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  
+  @media (min-width: ${luxuryTheme.breakpoints.tablet}) {
+    padding: 0 4rem;
+  }
+  
+  @media (min-width: ${luxuryTheme.breakpoints.desktop}) {
+    padding: 0 6rem;
+  }
+`;
+
+const FooterGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  
+  @media (min-width: ${luxuryTheme.breakpoints.tablet}) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  
+  @media (min-width: ${luxuryTheme.breakpoints.desktop}) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+  }
+`;
+
+const FooterSection = styled.div`
+  h3 {
+    font-family: ${luxuryTheme.typography.fonts.luxury};
+    font-size: 1.25rem;
+    font-weight: ${luxuryTheme.typography.weights.bold};
+    color: ${luxuryTheme.colors.gold.primary};
+    margin-bottom: 1rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      a {
+        color: ${luxuryTheme.colors.white};
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: ${luxuryTheme.colors.gold.primary};
+        }
+      }
+    }
+  }
+  
+  p {
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+`;
+
+const FooterBottom = styled.div`
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+  
+  @media (min-width: ${luxuryTheme.breakpoints.tablet}) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  
+  @media (min-width: ${luxuryTheme.breakpoints.tablet}) {
+    margin-top: 0;
+  }
+`;
+
+const SocialIcon = styled.a`
+  color: ${luxuryTheme.colors.white};
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  
+  &:hover {
+    color: ${luxuryTheme.colors.gold.primary};
+    background: rgba(212, 175, 55, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  }
+  
+  &.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+  }
+  
+  &.facebook:hover {
+    background: #1877f2;
+    color: white;
+  }
+  
+  &.tiktok:hover {
+    background: #000000;
+    color: white;
+  }
+`;
+
+const ContactInfo = styled.div`
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    
+    svg {
+      color: ${luxuryTheme.colors.gold.primary};
+      min-width: 16px;
+    }
+  }
+`;
+
+export const LuxuryFooter: React.FC<LuxuryFooterProps> = ({ className }) => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <FooterContainer className={className}>
+      <FooterContent>
+        <FooterGrid>
+          <FooterSection>
+            <h3>Mam Center</h3>
+            <p>A private equestrian club providing services to horse lovers, creating a social environment for families and friends.</p>
+            <p>Where passion meets professionalism in every stride.</p>
+          </FooterSection>
+          
+          <FooterSection>
+            <h3>Quick Links</h3>
+            <ul>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/services">Services</Link></li>
+              <li><Link to="/gallery">Gallery</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+            </ul>
+          </FooterSection>
+          
+          <FooterSection>
+            <h3>Our Services</h3>
+            <ul>
+              <li><Link to="/services">Horse Riding Courses</Link></li>
+              <li><Link to="/services">Show Jumping Training</Link></li>
+              <li><Link to="/services">Stable Rentals</Link></li>
+              <li><Link to="/services">Baran Coffee</Link></li>
+              <li><Link to="/booking">Book Now</Link></li>
+            </ul>
+          </FooterSection>
+          
+          <FooterSection>
+            <h3>Contact Info</h3>
+            <ContactInfo>
+              <p><FaMapMarkerAlt /> 123 Equestrian Way<br />Horse Valley, HV 12345</p>
+              <p><FaPhone /> +1 (555) 123-4567</p>
+              <p><FaEnvelope /> info@mamcenter.com</p>
+            </ContactInfo>
+          </FooterSection>
+        </FooterGrid>
+        
+        <FooterBottom>
+          <p>&copy; {currentYear} Mam Center. All rights reserved.</p>
+          <SocialLinks>
+            <SocialIcon 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Instagram"
+              className="instagram"
+            >
+              <FaInstagram />
+            </SocialIcon>
+            <SocialIcon 
+              href="https://facebook.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Facebook"
+              className="facebook"
+            >
+              <FaFacebook />
+            </SocialIcon>
+            <SocialIcon 
+              href="https://tiktok.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="TikTok"
+              className="tiktok"
+            >
+              <FaTiktok />
+            </SocialIcon>
+          </SocialLinks>
+        </FooterBottom>
+      </FooterContent>
+    </FooterContainer>
+  );
+};

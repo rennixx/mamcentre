@@ -1,125 +1,115 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ServicesContainer = styled.div`
+const Container = styled.div`
+  width: 100%;
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #1B365D 0%,
-    #2A4A6B 50%,
-    #1A2332 100%
-  );
-  padding: 6rem 2rem 4rem;
-  color: #FFFFFF;
-  position: relative;
-  
-  @media (min-width: 1440px) {
-    padding: 8rem 4rem 6rem;
-  }
-  
-  @media (min-width: 1920px) {
-    padding: 10rem 5rem 8rem;
-  }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
+  background: #f8f9fa;
 `;
 
-const ServicesContent = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
+const HeroSection = styled.section`
+  position: relative;
+  color: white;
+  padding: 8rem 2rem 6rem;
   text-align: center;
-  position: relative;
-  z-index: 1;
+  overflow: hidden;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  @media (min-width: 1440px) {
-    max-width: 1600px;
+  @media (min-width: 768px) {
+    padding: 10rem 4rem 8rem;
+    min-height: 90vh;
   }
   
-  @media (min-width: 1920px) {
-    max-width: 1800px;
+  @media (min-width: 1200px) {
+    padding: 12rem 6rem 10rem;
+    min-height: 95vh;
   }
 `;
 
-const ServicesTitle = styled.h1`
-  font-family: 'Playfair Display', serif;
-  font-size: 3.5rem;
+const HeroVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(1.1) contrast(1.1) saturate(1.2);
+`;
+
+const HeroOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const HeroTitle = styled.h1`
+  font-size: 3rem;
+  font-weight: bold;
   margin-bottom: 1.5rem;
-  color: #D4AF37;
-  font-weight: 700;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 20px rgba(0, 0, 0, 0.7);
   
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-  
-  @media (min-width: 1440px) {
+  @media (min-width: 768px) {
     font-size: 4rem;
   }
-  
-  @media (min-width: 1920px) {
-    font-size: 4.5rem;
-  }
 `;
 
-const ServicesSubtitle = styled.p`
-  font-size: 1.3rem;
-  margin-bottom: 4rem;
-  color: #FFFFFF;
+const HeroSubtitle = styled.p`
+  font-size: 1.25rem;
+  opacity: 0.95;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   line-height: 1.6;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
+`;
+
+const ServicesSection = styled.section`
+  padding: 6rem 2rem;
   
-  @media (min-width: 1440px) {
-    font-size: 1.4rem;
-    max-width: 700px;
-  }
-  
-  @media (min-width: 1920px) {
-    font-size: 1.5rem;
-    max-width: 800px;
+  @media (min-width: 768px) {
+    padding: 8rem 4rem;
   }
 `;
 
 const ServicesGrid = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  margin-top: 3rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   
-  @media (min-width: 1024px) {
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
   }
   
-  @media (min-width: 1440px) {
+  @media (min-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
-  }
-  
-  @media (min-width: 1920px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.5rem;
   }
 `;
 
 const ServiceCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
-  padding: 3rem 2rem;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.4s ease;
-  text-align: center;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid transparent;
   position: relative;
   overflow: hidden;
   
@@ -129,57 +119,57 @@ const ServiceCard = styled.div`
     top: 0;
     left: -100%;
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s;
+    height: 4px;
+    background: linear-gradient(90deg, #D4AF37, #B8941F);
+    transition: all 0.5s ease;
   }
   
   &:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(27, 54, 93, 0.15);
+    border-color: #D4AF37;
     
     &::before {
-      left: 100%;
+      left: 0;
     }
+  }
+    border-color: #D4AF37;
   }
 `;
 
 const ServiceIcon = styled.div`
-  font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  text-align: center;
 `;
 
 const ServiceTitle = styled.h3`
-  font-size: 1.6rem;
-  margin-bottom: 1.2rem;
-  color: #D4AF37;
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
+  font-size: 1.5rem;
+  color: #1B365D;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
 `;
 
 const ServiceDescription = styled.p`
-  line-height: 1.7;
-  color: #FFFFFF;
-  margin-bottom: 1.5rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
 `;
 
-const ServiceFeatures = styled.ul`
+const FeaturesList = styled.ul`
   list-style: none;
   padding: 0;
-  text-align: left;
   margin-bottom: 2rem;
 `;
 
-const ServiceFeature = styled.li`
+const FeatureItem = styled.li`
+  color: #555;
   padding: 0.5rem 0;
-  color: #FFFFFF;
   position: relative;
   padding-left: 1.5rem;
   
-  &::before {
+  &:before {
     content: '✓';
     position: absolute;
     left: 0;
@@ -188,118 +178,168 @@ const ServiceFeature = styled.li`
   }
 `;
 
-const PriceTag = styled.div`
-  background: linear-gradient(135deg, #D4AF37 0%, #E5C659 100%);
+const ServicePrice = styled.div`
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
   color: #1B365D;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 1.1rem;
   margin-top: 1rem;
-  display: inline-block;
+`;
+
+const ContactButton = styled.button`
+  width: 100%;
+  background: #D4AF37;
+  color: #1B365D;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  
+  &:hover {
+    background: #B8941F;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  }
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2.5rem;
+  color: #1B365D;
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: bold;
+  
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 
 export const SimpleServicesPage: React.FC = () => {
   const services = [
     {
-      icon: "🐎",
-      title: "Horse Training",
-      description: "Comprehensive training programs tailored to each horse's individual needs and potential.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>🐎</span>,
+      title: "Professional Riding Lessons",
+      description: "Expert instruction for all ages and skill levels. Our certified instructors provide personalized training in a safe, supportive environment with Lebanon's finest horses.",
       features: [
-        "Basic ground work and handling",
-        "Advanced performance training",
-        "Behavioral correction",
-        "Competition preparation"
+        "Beginner to advanced programs",
+        "Individual & group lessons available",
+        "Certified professional instructors",
+        "Focus on safety & proper technique",
+        "Programs for children, teens & adults"
       ],
-      price: "Starting from $150/session"
+      price: "From $50 per lesson"
     },
     {
-      icon: "🏇",
-      title: "Riding Lessons",
-      description: "Expert riding instruction for all skill levels in a safe and supportive environment.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>🏆</span>,
+      title: "Championship Show Jumping",
+      description: "Elite training for competitive riders. Develop your jumping skills with our competition-grade horses and facilities, preparing you for regional and national events.",
       features: [
-        "Beginner to advanced levels",
-        "English and Western styles",
-        "Individual or group lessons",
-        "Safety-focused approach"
+        "Competition preparation courses",
+        "Professional jumping horses",
+        "Advanced technique refinement", 
+        "Show circuit preparation",
+        "Performance coaching & mentorship"
       ],
-      price: "Starting from $80/lesson"
+      price: "Premium training rates - Contact us"
     },
     {
-      icon: "🏡",
-      title: "Horse Boarding",
-      description: "Premium boarding services with personalized care and attention for your horse.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>🏠</span>,
+      title: "Luxury Event Hosting",
+      description: "Transform our stunning stable facilities into your perfect venue. Whether corporate events, celebrations, or private gatherings, we provide a unique countryside experience.",
       features: [
-        "Spacious stalls and turnouts",
-        "Daily feeding and care",
-        "24/7 monitoring",
-        "Exercise programs"
+        "Corporate retreat packages",
+        "Wedding & celebration venues",
+        "Private party hosting",
+        "Catering services available",
+        "Scenic countryside setting"
       ],
-      price: "Starting from $400/month"
+      price: "Event packages from $200/day"
     },
     {
-      icon: "🏆",
-      title: "Competition Prep",
-      description: "Specialized training and preparation for horse shows and competitive events.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>☕</span>,
+      title: "Baran Coffee Experience",
+      description: "Our signature café offers artisanal Lebanese coffee, international blends, fresh pastries, and light meals in a unique stable-side atmosphere.",
       features: [
-        "Show jumping preparation",
-        "Dressage training",
-        "Competition strategy",
-        "Performance optimization"
+        "Artisanal Lebanese & international coffee",
+        "Fresh pastries & traditional sweets",
+        "Light meals & healthy options", 
+        "Scenic outdoor seating",
+        "Perfect for meetings & relaxation"
       ],
-      price: "Starting from $200/session"
+      price: "Café menu: $3-15 per item"
     },
     {
-      icon: "🩺",
-      title: "Health & Wellness",
-      description: "Comprehensive health monitoring and wellness programs for optimal horse care.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>🤝</span>,
+      title: "Horsemanship & Care Training",
+      description: "Learn the art of horse care, handling, and communication. Develop a deeper connection with horses through professional horsemanship education.",
       features: [
-        "Regular health checkups",
-        "Nutrition planning",
-        "Fitness assessments",
-        "Preventive care"
+        "Horse behavior & psychology",
+        "Proper grooming techniques",
+        "Safety protocols & handling",
+        "Stable management skills",
+        "Hands-on practical experience"
       ],
-      price: "Starting from $100/visit"
+      price: "Specialized courses - Contact for rates"
     },
     {
-      icon: "🎓",
-      title: "Clinics & Workshops",
-      description: "Educational programs and specialized clinics to enhance your equestrian knowledge.",
+      icon: <span style={{fontSize: '2.5rem', color: '#D4AF37'}}>👥</span>,
+      title: "Community & Social Programs",
+      description: "Join our vibrant equestrian community through social rides, workshops, and events. Connect with fellow horse enthusiasts in Lebanon's most welcoming stable environment.",
       features: [
-        "Guest instructor clinics",
-        "Horsemanship workshops",
-        "Safety training",
-        "Certification programs"
+        "Monthly community rides",
+        "Educational workshops & clinics",
+        "Family-friendly events",
+        "Networking opportunities",
+        "Horseback trail adventures"
       ],
-      price: "Starting from $120/clinic"
+      price: "Community events: Free-$25"
     }
   ];
 
   return (
-    <ServicesContainer>
-      <ServicesContent>
-        <ServicesTitle>Our Premium Services</ServicesTitle>
-        <ServicesSubtitle>
-          Discover our comprehensive range of professional equestrian services, 
-          designed to meet every aspect of your horse-related needs with excellence and care.
-        </ServicesSubtitle>
-        
+    <Container>
+      <HeroSection>
+        <HeroVideo autoPlay muted loop playsInline>
+          <source src={require('../assets/IMG_2711.MP4')} type="video/mp4" />
+          <source src={require('../assets/IMG_4270.MP4')} type="video/mp4" />
+          <source src={require('../assets/IMG_3117.MOV')} type="video/quicktime" />
+        </HeroVideo>
+        <HeroOverlay />
+        <HeroContent>
+          <HeroTitle>Mam Center Services</HeroTitle>
+          <HeroSubtitle>
+            Discover our world-class equestrian programs, from beginner riding lessons to championship training, plus our unique Baran Coffee experience.
+          </HeroSubtitle>
+        </HeroContent>
+      </HeroSection>
+
+      <ServicesSection>
+        <SectionTitle>What We Offer</SectionTitle>
         <ServicesGrid>
           {services.map((service, index) => (
             <ServiceCard key={index}>
               <ServiceIcon>{service.icon}</ServiceIcon>
               <ServiceTitle>{service.title}</ServiceTitle>
               <ServiceDescription>{service.description}</ServiceDescription>
-              <ServiceFeatures>
-                {service.features.map((feature, idx) => (
-                  <ServiceFeature key={idx}>{feature}</ServiceFeature>
+              <FeaturesList>
+                {service.features.map((feature, featureIndex) => (
+                  <FeatureItem key={featureIndex}>{feature}</FeatureItem>
                 ))}
-              </ServiceFeatures>
-              <PriceTag>{service.price}</PriceTag>
+              </FeaturesList>
+              <ServicePrice>{service.price}</ServicePrice>
+              <ContactButton onClick={() => window.location.href = '#/contact'}>
+                Get More Information
+              </ContactButton>
             </ServiceCard>
           ))}
         </ServicesGrid>
-      </ServicesContent>
-    </ServicesContainer>
+      </ServicesSection>
+    </Container>
   );
 };

@@ -16,12 +16,9 @@ const HeaderContainer = styled(motion.header)<{ scrolled: boolean }>`
   left: 0;
   right: 0;
   z-index: 1000;
-  background: ${props => props.scrolled 
-    ? 'rgba(27, 54, 93, 0.95)' 
-    : 'rgba(27, 54, 93, 0.8)'
-  };
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  backdrop-filter: blur(15px);
+  border-bottom: none;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: ${props => props.scrolled ? '0.3rem 0' : '0.6rem 0'};
 `;

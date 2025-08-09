@@ -12,31 +12,34 @@ import { luxuryTheme } from '../../constants/luxuryTheme';
 import { useOptimizedReveal, usePerformantScroll } from '../../hooks/useOptimizedAnimations';
 
 const AboutContainer = styled(LuxurySection)`
-  background: linear-gradient(
-    180deg,
-    #0F1419 0%,
-    ${luxuryTheme.colors.primary.navy} 25%,
-    #1A2332 50%,
-    ${luxuryTheme.colors.primary.navyLight} 75%,
-    ${luxuryTheme.colors.primary.navy} 100%
-  );
   position: relative;
   padding: 8rem 2rem;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 70% 80%, rgba(192, 192, 192, 0.08) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
-    will-change: opacity;
-  }
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AboutVideo = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(1.1) contrast(1.1) saturate(1.2);
+`;
+
+const AboutOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 1;
 `;
 
 const AboutContent = styled.div`
@@ -48,15 +51,21 @@ const AboutContent = styled.div`
 
 const IntroSection = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 8rem;
   align-items: center;
-  margin-bottom: 8rem;
+  margin-bottom: 10rem;
+  padding: 0 2rem;
   
   @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     gap: 4rem;
     text-align: center;
+    padding: 0 1rem;
+  }
+  
+  @media (min-width: 1400px) {
+    gap: 10rem;
   }
 `;
 
@@ -70,12 +79,14 @@ const SectionTitle = styled(LuxuryText)`
   color: ${luxuryTheme.colors.white};
   margin-bottom: 2rem;
   position: relative;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9), 1px 1px 20px rgba(0, 0, 0, 0.7);
   
   &::after {
     content: '';
     position: absolute;
     bottom: -20px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 120px;
     height: 3px;
     background: ${luxuryTheme.gradients.goldNavy};
@@ -92,10 +103,11 @@ const SectionTitle = styled(LuxuryText)`
 
 const IntroDescription = styled(motion.div)`
   font-family: ${luxuryTheme.typography.fonts.primary};
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.2rem;
   line-height: 1.8;
   margin-bottom: 2rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
   
   p {
     margin-bottom: 1.5rem;
@@ -113,16 +125,19 @@ const FounderQuote = styled(motion.blockquote)`
   font-style: italic;
   line-height: 1.6;
   margin: 3rem 0;
-  padding-left: 2rem;
-  border-left: 3px solid ${luxuryTheme.colors.gold.primary};
+  padding: 2.5rem 3rem;
   position: relative;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
+  border-left: 4px solid ${luxuryTheme.colors.gold.primary};
   
   &::before {
     content: '"';
     font-size: 4rem;
     position: absolute;
     top: -1rem;
-    left: -1rem;
+    left: 1rem;
+    color: ${luxuryTheme.colors.gold.primary};
+    opacity: 0.6;
     opacity: 0.3;
   }
 `;
@@ -322,6 +337,8 @@ const StatNumber = styled.div`
   font-weight: ${luxuryTheme.typography.weights.bold};
   margin-bottom: 1rem;
   line-height: 1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 15px rgba(0, 0, 0, 0.6);
+  display: inline-block;
 `;
 
 const StatLabel = styled.div`
@@ -403,6 +420,8 @@ const TeamRole = styled.div`
   font-size: 0.9rem;
   font-weight: ${luxuryTheme.typography.weights.medium};
   margin-bottom: 1rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 1px 1px 12px rgba(0, 0, 0, 0.5);
+  display: inline-block;
 `;
 
 const TeamBio = styled.p`
@@ -518,6 +537,11 @@ export const EnhancedAboutSection: React.FC = () => {
 
   return (
     <AboutContainer ref={containerRef as any} id="about-section">
+      <AboutVideo autoPlay muted loop playsInline>
+        <source src={require('../../assets/IMG_3960.MP4')} type="video/mp4" />
+        <source src={require('../../assets/IMG_5956.MOV')} type="video/quicktime" />
+      </AboutVideo>
+      <AboutOverlay />
       <AboutContent>
         {/* Introduction Section */}
         <IntroSection>

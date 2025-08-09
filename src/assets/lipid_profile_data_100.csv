@@ -1,0 +1,101 @@
+Date,Name,Gender,Age,Weight (kg),Height (cm),BMI,Type 2 Diabetes,Family History of Diabetes,Hypertension,Hyperlipidemia,Diabetes Medication,Lipid Lowering Medication,Diet,Physical Activity,Smoking Status
+YYYY-MM-DD,Susan Perez,Female,53,107.7,197,27.8,No,Yes,Yes,Yes,None,Yes,High in fats and processed foods,Moderate activity,Former Smoker
+YYYY-MM-DD,Rebecca Ramirez,Female,69,79.8,170,27.6,No,No,Yes,Yes,None,Yes,Ketogenic diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Michael Boyle,Female,71,80.7,178,25.5,Yes,No,Yes,Yes,Metformin,No,High in fats and processed foods,No exercise,No
+YYYY-MM-DD,Douglas Thompson Jr.,Male,73,53.1,186,15.3,No,Yes,Yes,Yes,Insulin,Yes,Other,Light activity,Former Smoker
+YYYY-MM-DD,Brittany Adams,Male,41,97.0,184,28.7,Yes,Yes,Yes,Yes,Metformin,Yes,High in fats and processed foods,Moderate activity,Former Smoker
+YYYY-MM-DD,John Johnson,Female,60,74.6,198,19.0,Yes,Yes,Yes,Yes,Other,No,Ketogenic diet,Moderate activity,No
+YYYY-MM-DD,Patricia Patrick,Female,62,111.3,193,29.9,Yes,Yes,No,No,Insulin,Yes,Other,No exercise,Former Smoker
+YYYY-MM-DD,Jane Harmon,Female,33,50.6,163,19.0,No,No,Yes,No,Metformin,Yes,Other,Moderate activity,Yes
+YYYY-MM-DD,Raymond Hooper,Female,39,56.7,160,22.1,No,Yes,Yes,Yes,Insulin,No,Balanced diet,No exercise,Yes
+YYYY-MM-DD,Barry Barnes,Male,46,109.4,177,34.9,Yes,No,No,No,Metformin,No,Ketogenic diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Christina Maddox,Female,53,119.6,151,52.5,Yes,No,Yes,Yes,Insulin,No,High in fats and processed foods,Moderate activity,Yes
+YYYY-MM-DD,Michael Burke,Male,48,59.9,164,22.3,No,No,No,No,Insulin,No,Ketogenic diet,Light activity,Former Smoker
+YYYY-MM-DD,Brooke Davis,Female,68,83.6,198,21.3,Yes,Yes,No,Yes,Insulin,No,High in fats and processed foods,Light activity,No
+YYYY-MM-DD,Amanda Davis,Male,80,118.7,190,32.9,No,Yes,Yes,No,None,Yes,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Damon Ruiz,Male,48,120.0,176,38.7,Yes,Yes,No,No,None,No,Balanced diet,No exercise,No
+YYYY-MM-DD,Walter Boyd,Male,44,75.6,182,22.8,Yes,No,No,No,None,No,Ketogenic diet,No exercise,Yes
+YYYY-MM-DD,Barbara Williams,Female,36,65.4,196,17.0,No,No,No,Yes,None,Yes,Balanced diet,Light activity,Former Smoker
+YYYY-MM-DD,Amy Smith,Male,69,62.9,177,20.1,No,No,Yes,Yes,Other,No,Balanced diet,Moderate activity,Yes
+YYYY-MM-DD,Lorraine Lewis,Male,47,79.9,177,25.5,No,No,Yes,Yes,Insulin,No,Other,No exercise,Former Smoker
+YYYY-MM-DD,Denise Jacobs,Male,30,92.9,198,23.7,Yes,No,No,No,Insulin,Yes,High in fats and processed foods,Moderate activity,No
+YYYY-MM-DD,Ms. Dana Day,Male,46,78.0,176,25.2,Yes,No,No,Yes,Other,No,Other,No exercise,Yes
+YYYY-MM-DD,Christine Martinez,Male,67,59.0,193,15.8,No,No,Yes,No,None,Yes,Ketogenic diet,No exercise,Former Smoker
+YYYY-MM-DD,Susan Taylor,Male,37,90.1,176,29.1,No,Yes,No,No,Insulin,Yes,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,Justin Fields,Female,38,116.1,151,50.9,Yes,Yes,No,Yes,None,No,Other,No exercise,No
+YYYY-MM-DD,Sandra Woodard,Female,57,71.7,177,22.9,No,No,No,No,Insulin,No,Other,Light activity,Yes
+YYYY-MM-DD,Peter Thomas,Female,33,96.9,193,26.0,Yes,No,No,Yes,Metformin,Yes,Ketogenic diet,Light activity,Former Smoker
+YYYY-MM-DD,Joshua Davidson,Male,44,74.6,161,28.8,Yes,Yes,No,No,Other,No,Balanced diet,Moderate activity,Yes
+YYYY-MM-DD,Mr. George Matthews,Female,52,116.3,155,48.4,Yes,Yes,No,Yes,None,Yes,Balanced diet,No exercise,Former Smoker
+YYYY-MM-DD,Angela Salas,Male,34,67.2,157,27.3,Yes,Yes,No,No,None,Yes,Other,Moderate activity,No
+YYYY-MM-DD,Jessica Adams,Male,57,55.7,165,20.5,Yes,No,Yes,Yes,Other,No,Ketogenic diet,Light activity,Yes
+YYYY-MM-DD,Brandon Griffin,Male,43,64.2,167,23.0,No,No,Yes,Yes,Insulin,Yes,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,Tanya Bell,Female,39,114.9,185,33.6,Yes,No,No,Yes,Insulin,No,Other,Moderate activity,No
+YYYY-MM-DD,Lauren Heath,Female,57,84.4,163,31.8,Yes,Yes,Yes,Yes,Metformin,No,Ketogenic diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Nicholas Flores,Female,78,66.7,150,29.6,Yes,No,Yes,Yes,None,Yes,Other,Moderate activity,Former Smoker
+YYYY-MM-DD,Scott Lane,Male,69,63.1,174,20.8,Yes,No,No,Yes,Metformin,Yes,Balanced diet,Moderate activity,Former Smoker
+YYYY-MM-DD,James Cole,Male,80,62.1,189,17.4,No,No,No,Yes,Insulin,No,Ketogenic diet,Moderate activity,Yes
+YYYY-MM-DD,Yolanda Webb,Male,61,77.6,172,26.2,No,No,Yes,No,None,Yes,Ketogenic diet,Moderate activity,No
+YYYY-MM-DD,Roger Clark,Female,68,70.2,155,29.2,Yes,Yes,No,Yes,Metformin,No,Balanced diet,No exercise,No
+YYYY-MM-DD,Michael White,Male,39,91.4,184,27.0,Yes,Yes,No,Yes,Insulin,No,Balanced diet,No exercise,Yes
+YYYY-MM-DD,Ronald Salinas,Male,53,106.5,184,31.5,Yes,Yes,Yes,Yes,Metformin,No,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Susan Scott,Female,68,110.5,195,29.1,Yes,No,No,No,Metformin,No,Other,Light activity,No
+YYYY-MM-DD,Gabriela Dixon,Male,52,103.8,167,37.2,No,Yes,Yes,No,None,No,Ketogenic diet,Moderate activity,Yes
+YYYY-MM-DD,Michael Clark,Male,72,74.5,197,19.2,Yes,No,No,No,Insulin,No,Ketogenic diet,Light activity,Former Smoker
+YYYY-MM-DD,Sara Dickerson,Female,47,103.2,200,25.8,No,Yes,Yes,Yes,Other,Yes,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,Andrew Yates,Male,60,75.6,177,24.1,No,No,No,Yes,Metformin,No,Other,Light activity,Yes
+YYYY-MM-DD,Vanessa Green,Male,61,95.5,186,27.6,No,Yes,Yes,Yes,Other,Yes,Ketogenic diet,Moderate activity,Yes
+YYYY-MM-DD,Cheryl Miller,Male,70,108.5,151,47.6,No,No,No,No,None,Yes,Other,Moderate activity,Yes
+YYYY-MM-DD,Daniel Torres,Female,36,86.6,186,25.0,No,No,Yes,Yes,Insulin,No,Balanced diet,Light activity,Former Smoker
+YYYY-MM-DD,Joseph Buchanan,Female,69,60.6,193,16.3,Yes,No,Yes,No,Metformin,Yes,Balanced diet,No exercise,No
+YYYY-MM-DD,Mark Anderson,Male,79,57.5,184,17.0,No,Yes,Yes,No,None,No,Balanced diet,No exercise,No
+YYYY-MM-DD,Anthony Davis,Female,39,76.7,200,19.2,No,No,No,Yes,Metformin,No,Other,Moderate activity,No
+YYYY-MM-DD,Kerri Young,Male,69,118.1,194,31.4,No,No,No,Yes,Other,No,High in fats and processed foods,Moderate activity,No
+YYYY-MM-DD,Richard Murray,Female,31,86.6,157,35.1,No,No,No,Yes,Metformin,Yes,Balanced diet,No exercise,No
+YYYY-MM-DD,Joseph Wright,Female,51,52.3,160,20.4,Yes,Yes,Yes,Yes,Metformin,Yes,High in fats and processed foods,No exercise,Yes
+YYYY-MM-DD,Phillip Velazquez,Female,61,99.2,171,33.9,No,No,No,No,Metformin,No,Other,No exercise,No
+YYYY-MM-DD,Jimmy Graham,Female,34,92.9,176,30.0,No,No,No,No,Other,Yes,High in fats and processed foods,Light activity,Former Smoker
+YYYY-MM-DD,Shari Day,Male,48,76.1,196,19.8,Yes,Yes,Yes,Yes,None,Yes,Other,Moderate activity,Yes
+YYYY-MM-DD,Daniel Thompson,Male,39,92.4,175,30.2,No,Yes,No,Yes,Other,Yes,Ketogenic diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Angela Calhoun,Female,50,81.1,170,28.1,No,No,No,Yes,Insulin,Yes,Ketogenic diet,Light activity,No
+YYYY-MM-DD,William Williams,Male,48,61.7,150,27.4,No,Yes,No,Yes,Other,Yes,High in fats and processed foods,Light activity,Former Smoker
+YYYY-MM-DD,David Lopez,Male,44,69.8,181,21.3,No,No,No,Yes,Insulin,Yes,Other,Moderate activity,Yes
+YYYY-MM-DD,Bailey Montoya,Female,33,92.4,190,25.6,No,No,Yes,No,Insulin,No,High in fats and processed foods,Light activity,Former Smoker
+YYYY-MM-DD,Alexander Ramirez,Male,38,81.3,158,32.6,No,No,No,Yes,None,Yes,Other,No exercise,Former Smoker
+YYYY-MM-DD,Kristin Martinez,Male,54,107.0,172,36.2,Yes,Yes,No,No,None,No,Balanced diet,Light activity,No
+YYYY-MM-DD,Timothy Duncan,Female,65,105.2,169,36.8,Yes,No,Yes,No,Metformin,No,High in fats and processed foods,Moderate activity,Former Smoker
+YYYY-MM-DD,Joshua Austin,Male,79,58.5,169,20.5,No,Yes,No,Yes,None,No,Balanced diet,Light activity,No
+YYYY-MM-DD,Rebecca Price,Female,50,117.0,186,33.8,Yes,Yes,No,Yes,Metformin,Yes,Other,No exercise,Former Smoker
+YYYY-MM-DD,Amanda Owens,Male,73,86.9,178,27.4,Yes,No,No,Yes,None,No,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,Eric Ferguson,Female,51,95.6,167,34.3,No,No,No,Yes,None,Yes,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Edward Santiago,Male,74,50.8,190,14.1,No,Yes,No,No,Other,Yes,Ketogenic diet,Light activity,Former Smoker
+YYYY-MM-DD,Jacob Williams,Male,36,69.6,196,18.1,Yes,Yes,Yes,No,Insulin,No,Balanced diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Deborah Odonnell,Female,73,75.7,196,19.7,Yes,Yes,No,Yes,Metformin,No,Balanced diet,Light activity,No
+YYYY-MM-DD,Roger Williams,Female,74,78.9,173,26.4,Yes,Yes,No,No,Insulin,Yes,High in fats and processed foods,No exercise,Yes
+YYYY-MM-DD,Ashley Henderson,Male,36,67.3,162,25.6,No,Yes,No,No,None,Yes,Other,Light activity,Yes
+YYYY-MM-DD,Nicholas Powell,Male,34,90.3,164,33.6,Yes,Yes,No,Yes,Metformin,No,Ketogenic diet,Moderate activity,No
+YYYY-MM-DD,Peter Valdez,Male,74,63.4,184,18.7,No,Yes,No,No,Other,Yes,Other,Moderate activity,Yes
+YYYY-MM-DD,Jonathan Webster,Female,38,101.0,185,29.5,No,No,No,Yes,None,Yes,Ketogenic diet,Moderate activity,Former Smoker
+YYYY-MM-DD,Kristin Kelly,Male,31,68.4,160,26.7,No,No,Yes,No,Metformin,Yes,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Charles Berg,Male,38,104.5,193,28.1,Yes,No,Yes,No,Other,No,Other,Moderate activity,Former Smoker
+YYYY-MM-DD,Kenneth Foster,Female,60,83.0,182,25.1,No,Yes,No,Yes,Other,Yes,Other,Light activity,Yes
+YYYY-MM-DD,Emily Ochoa,Female,49,101.8,182,30.7,Yes,No,No,No,None,Yes,Ketogenic diet,No exercise,No
+YYYY-MM-DD,Michelle Ortega,Male,46,116.6,178,36.8,No,Yes,No,Yes,Other,Yes,Other,Moderate activity,No
+YYYY-MM-DD,Jose Keller,Male,76,110.7,159,43.8,Yes,Yes,Yes,No,Other,No,Ketogenic diet,No exercise,No
+YYYY-MM-DD,Tina Thornton,Male,75,76.9,161,29.7,No,Yes,No,No,Insulin,No,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Jorge Sanders,Female,43,64.5,166,23.4,Yes,No,Yes,Yes,None,No,Balanced diet,No exercise,Yes
+YYYY-MM-DD,Kristin Smith,Male,51,62.2,162,23.7,Yes,Yes,Yes,No,None,Yes,Ketogenic diet,Moderate activity,No
+YYYY-MM-DD,Elizabeth Torres,Male,52,63.5,151,27.8,Yes,No,Yes,Yes,Metformin,Yes,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,William Turner,Male,39,53.3,187,15.2,No,Yes,No,Yes,Metformin,Yes,Balanced diet,Moderate activity,No
+YYYY-MM-DD,Jennifer Foster,Male,76,104.8,179,32.7,Yes,Yes,No,Yes,Other,No,Ketogenic diet,Light activity,Yes
+YYYY-MM-DD,Chad Oliver,Male,53,67.3,170,23.3,No,No,Yes,Yes,None,Yes,Other,Moderate activity,No
+YYYY-MM-DD,Brian Hall,Female,46,51.5,172,17.4,Yes,No,Yes,No,None,Yes,Ketogenic diet,Light activity,No
+YYYY-MM-DD,Brittany Rodriguez,Female,53,73.5,156,30.2,No,Yes,No,Yes,Insulin,No,High in fats and processed foods,No exercise,Yes
+YYYY-MM-DD,Jessica Walker,Male,46,75.3,200,18.8,Yes,No,No,No,Other,Yes,Balanced diet,No exercise,Former Smoker
+YYYY-MM-DD,Sheryl Spencer,Female,40,65.1,179,20.3,Yes,Yes,Yes,No,None,Yes,High in fats and processed foods,Moderate activity,No
+YYYY-MM-DD,Corey Carr,Female,79,53.8,151,23.6,No,No,Yes,No,Metformin,No,High in fats and processed foods,Moderate activity,Yes
+YYYY-MM-DD,Jeremy Bradley,Female,52,92.5,151,40.6,No,Yes,No,No,None,No,Balanced diet,Light activity,No
+YYYY-MM-DD,Lisa Adams,Male,34,82.1,169,28.7,No,No,No,Yes,Insulin,Yes,High in fats and processed foods,No exercise,Former Smoker
+YYYY-MM-DD,Jason Lawson,Female,52,104.6,179,32.6,No,Yes,No,No,Metformin,No,Ketogenic diet,No exercise,Former Smoker
+YYYY-MM-DD,Marisa Allen,Female,80,97.0,160,37.9,Yes,No,No,No,None,No,Balanced diet,Light activity,Yes
+YYYY-MM-DD,Alexandra Gonzalez,Female,74,90.8,198,23.2,Yes,No,Yes,No,Other,No,Ketogenic diet,Moderate activity,Yes
