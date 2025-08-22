@@ -1,366 +1,218 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { gsap } from 'gsap';
-import { 
-  LuxurySection, 
-  LuxuryText, 
-  GlassCard,
-  FloatingButton,
-  ParticleBackground 
-} from '../ui/LuxuryComponents';
+import { LuxurySection, LuxuryText, GlassCard, FloatingButton, ParticleBackground } from '../ui/LuxuryComponents';
 import { luxuryTheme } from '../../constants/luxuryTheme';
-import { 
-  usePremiumReveal,
-  useParallaxEffect,
-  useMagneticEffect 
-} from '../../hooks/useLuxuryAnimations';
+import { usePremiumReveal, useParallaxEffect, useMagneticEffect } from '../../hooks/useLuxuryAnimations';
 
-const ContactContainer = styled(LuxurySection)`
-  background: linear-gradient(
-    135deg,
-    ${luxuryTheme.colors.primary.navy} 0%,
-    ${luxuryTheme.colors.primary.navyLight} 50%,
-    ${luxuryTheme.colors.primary.navy} 100%
-  );
+// --- Styled Components ---
+const ContactContainer = styled(LuxurySection).attrs({ background: 'gradient' })`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
   position: relative;
-  padding: 8rem 2rem;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(192, 192, 192, 0.1) 0%, transparent 50%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
-    animation: contactGlow 20s ease-in-out infinite alternate;
-  }
-  
-  @keyframes contactGlow {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.8; }
-  }
 `;
 
-const ContactContent = styled.div`
-  max-width: 1400px;
+const ContactHero = styled(motion.div)`
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 7rem;
+  padding-bottom: 3.5rem;
+  max-width: 900px;
   width: 100%;
-  z-index: 10;
+  z-index: 2;
+`;
+
+const ContactTitle = styled(motion.h1)`
+  font-family: ${luxuryTheme.typography.fonts.luxury};
+  font-size: 3.2rem;
+  font-weight: ${luxuryTheme.typography.weights.bold};
+  color: ${luxuryTheme.colors.white};
+  margin-bottom: 1.2rem;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #D4AF37 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  @media (min-width: 768px) { font-size: 4rem; }
+  @media (min-width: 1200px) { font-size: 5rem; }
+`;
+
+const ContactSubtitle = styled(motion.p)`
+  font-family: ${luxuryTheme.typography.fonts.primary};
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  @media (min-width: 1440px) { font-size: 1.5rem; max-width: 900px; }
+`;
+
+const ContactCard = styled(GlassCard)`
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2.5rem;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 2rem;
+  padding: 0;
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: start;
-  
-  @media (max-width: 1024px) {
-    grid-template-columns: 1fr;
-    gap: 4rem;
+  z-index: 3;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+    gap: 3rem;
+    align-items: flex-start;
   }
 `;
 
 const ContactInfo = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
-`;
-
-const SectionHeader = styled.div`
-  margin-bottom: 3rem;
-`;
-
-const SectionTitle = styled(LuxuryText)`
-  color: ${luxuryTheme.colors.white};
-  margin-bottom: 1.5rem;
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 0;
-    width: 100px;
-    height: 3px;
-    background: ${luxuryTheme.gradients.goldNavy};
-    border-radius: 2px;
-  }
-`;
-
-const SectionSubtitle = styled.p`
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.2rem;
-  line-height: 1.6;
-  font-weight: ${luxuryTheme.typography.weights.light};
+  gap: 2rem;
+  flex: 1 1 0;
+  min-width: 0;
 `;
 
 const InfoCard = styled(GlassCard)`
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 2.5rem;
+  padding: 2rem;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: ${luxuryTheme.gradients.goldNavy};
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-  
-  &:hover::before {
-    transform: translateX(0);
-  }
 `;
 
 const InfoIcon = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: ${luxuryTheme.gradients.goldNavy};
-  border-radius: ${luxuryTheme.borderRadius.lg};
+  border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: ${luxuryTheme.gradients.goldNavy};
-    border-radius: inherit;
-    z-index: -1;
-    filter: blur(6px);
-    opacity: 0.6;
-  }
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const InfoTitle = styled.h3`
   font-family: ${luxuryTheme.typography.fonts.luxury};
   color: ${luxuryTheme.colors.white};
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: ${luxuryTheme.typography.weights.bold};
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 const InfoText = styled.p`
   font-family: ${luxuryTheme.typography.fonts.primary};
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
 `;
 
 const ContactForm = styled(motion.form)`
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: ${luxuryTheme.borderRadius.xl};
-  padding: 3rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.10);
+  padding: 2.5rem 2rem;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: ${luxuryTheme.gradients.goldNavy};
-    transform: translateX(-100%);
-    transition: transform 0.8s ease;
-  }
-  
-  &:hover::before {
-    transform: translateX(0);
+  border: none;
+  color: #222;
+  flex: 1 1 0;
+  min-width: 0;
+  @media (min-width: 900px) {
+    min-width: 380px;
+    max-width: 480px;
   }
 `;
 
 const FormTitle = styled(LuxuryText)`
-  color: ${luxuryTheme.colors.white};
+  color: #222;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 const FormGroup = styled(motion.div)`
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
   position: relative;
 `;
 
 const FormLabel = styled(motion.label)`
   font-family: ${luxuryTheme.typography.fonts.primary};
-  color: ${luxuryTheme.colors.gold.primary};
-  font-size: 0.9rem;
+  color: #222;
+  font-size: 0.95rem;
   font-weight: ${luxuryTheme.typography.weights.medium};
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   display: block;
-  transition: all 0.3s ease;
 `;
 
 const FormInput = styled(motion.input)<{ hasValue: boolean }>`
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: ${luxuryTheme.borderRadius.md};
-  padding: 1rem 1.5rem;
-  color: ${luxuryTheme.colors.white};
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.7rem;
+  padding: 0.9rem 1.2rem;
+  color: #222;
   font-family: ${luxuryTheme.typography.fonts.primary};
   font-size: 1rem;
   outline: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  
-  &:focus {
-    border-color: ${luxuryTheme.colors.gold.primary};
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-  }
-  
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    transition: opacity 0.3s ease;
-  }
-  
-  &:focus::placeholder {
-    opacity: 0;
-  }
+  &::placeholder { color: #aaa; }
 `;
 
 const FormTextarea = styled(motion.textarea)<{ hasValue: boolean }>`
   width: 100%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: ${luxuryTheme.borderRadius.md};
-  padding: 1rem 1.5rem;
-  color: ${luxuryTheme.colors.white};
+  background: #f7f7f7;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.7rem;
+  padding: 0.9rem 1.2rem;
+  color: #222;
   font-family: ${luxuryTheme.typography.fonts.primary};
   font-size: 1rem;
   outline: none;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  min-height: 120px;
+  min-height: 100px;
   resize: vertical;
-  
-  &:focus {
-    border-color: ${luxuryTheme.colors.gold.primary};
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-  }
-  
-  &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    transition: opacity 0.3s ease;
-  }
-  
-  &:focus::placeholder {
-    opacity: 0;
-  }
+  &::placeholder { color: #aaa; }
 `;
 
 const FormSubmitButton = styled(FloatingButton)`
   width: 100%;
   justify-content: center;
-  padding: 1.2rem 2rem;
+  padding: 1rem 2rem;
   font-size: 1.1rem;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: ${luxuryTheme.gradients.goldNavy};
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  &:hover::before {
-    opacity: 0.1;
-  }
+  background: ${luxuryTheme.gradients.goldNavy};
+  color: #fff;
+  border: none;
 `;
 
 const SuccessMessage = styled(motion.div)`
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.3);
-  border-radius: ${luxuryTheme.borderRadius.md};
+  background: #e8f5e9;
+  border: 1px solid #b2dfdb;
+  border-radius: 1rem;
   padding: 1rem 1.5rem;
-  color: #4CAF50;
+  color: #388e3c;
   font-family: ${luxuryTheme.typography.fonts.primary};
   text-align: center;
   margin-bottom: 1rem;
-  backdrop-filter: blur(10px);
 `;
 
-const FloatingElements = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  overflow: hidden;
-`;
-
-const FloatingOrb = styled(motion.div)<{ size: number; top: string; left: string }>`
-  position: absolute;
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
-  background: radial-gradient(
-    circle,
-    rgba(212, 175, 55, 0.2) 0%,
-    rgba(212, 175, 55, 0.1) 50%,
-    transparent 100%
-  );
-  border-radius: 50%;
-  top: ${props => props.top};
-  left: ${props => props.left};
-  filter: blur(2px);
-  animation: float 15s ease-in-out infinite;
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-  }
-`;
-
+// --- Data ---
 const contactInfo = [
-  {
-    icon: '📍',
-    title: 'Visit Our Center',
-    details: ['123 Equestrian Way', 'Premium Valley, PV 12345', 'United States']
-  },
-  {
-    icon: '📞',
-    title: 'Call Us',
-    details: ['+1 (555) 123-4567', '+1 (555) 987-6543', 'Available 7 days a week']
-  },
-  {
-    icon: '✉️',
-    title: 'Email Us',
-    details: ['info@premiumequestrian.com', 'bookings@premiumequestrian.com', 'Quick response guaranteed']
-  },
-  {
-    icon: '⏰',
-    title: 'Operating Hours',
-    details: ['Monday - Friday: 6:00 AM - 8:00 PM', 'Saturday - Sunday: 7:00 AM - 6:00 PM', 'Holiday hours may vary']
-  }
+  { icon: '📍', title: 'Visit Our Center', details: ['123 Equestrian Way', 'Premium Valley, PV 12345', 'United States'] },
+  { icon: '📞', title: 'Call Us', details: ['+1 (555) 123-4567', '+1 (555) 987-6543', 'Available 7 days a week'] },
+  { icon: '✉️', title: 'Email Us', details: ['info@premiumequestrian.com', 'bookings@premiumequestrian.com', 'Quick response guaranteed'] },
+  { icon: '⏰', title: 'Operating Hours', details: ['Monday - Friday: 6:00 AM - 8:00 PM', 'Saturday - Sunday: 7:00 AM - 6:00 PM', 'Holiday hours may vary'] },
 ];
 
 interface FormData {
@@ -371,38 +223,15 @@ interface FormData {
   message: string;
 }
 
+// --- Main Component ---
 export const ContactSection: React.FC = () => {
   const { ref: containerRef, inView } = usePremiumReveal();
   const parallaxRef = useParallaxEffect(0.3);
   const magneticRef = useMagneticEffect(1.5);
-  
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
-  });
-  
+  const [formData, setFormData] = useState<FormData>({ name: '', email: '', phone: '', service: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (inView && formRef.current) {
-      gsap.fromTo(
-        formRef.current.querySelectorAll('.form-group'),
-        { opacity: 0, y: 30 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8, 
-          stagger: 0.1,
-          ease: "power2.out"
-        }
-      );
-    }
-  }, [inView]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -412,59 +241,56 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
-    // Reset form after success message
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
-      });
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     }, 3000);
   };
 
   return (
     <ContactContainer ref={containerRef as any} id="contact-section">
       <ParticleBackground ref={parallaxRef as any} />
-      
-      <FloatingElements>
-        <FloatingOrb size={120} top="10%" left="5%" />
-        <FloatingOrb size={80} top="60%" left="80%" />
-        <FloatingOrb size={60} top="30%" left="90%" />
-        <FloatingOrb size={100} top="80%" left="10%" />
-      </FloatingElements>
-      
-      <ContactContent>
-        <ContactInfo
-          initial={{ opacity: 0, x: -60 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-          transition={{ duration: 1, delay: 0.2 }}
+      <ContactHero
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <ContactTitle
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <SectionHeader>
-            <SectionTitle size="xl">
-              Get In Touch
-            </SectionTitle>
-            <SectionSubtitle>
-              Ready to begin your premium equestrian journey? Contact us today to discuss 
-              your goals and discover how we can elevate your riding experience.
-            </SectionSubtitle>
-          </SectionHeader>
-
+          Contact Mam Center
+        </ContactTitle>
+        <ContactSubtitle
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Reach out to us for premium equestrian services, bookings, or any questions. Our team is ready to help you achieve your riding goals in style.
+        </ContactSubtitle>
+      </ContactHero>
+      <ContactCard>
+        <ContactInfo
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0, x: -60 },
+            visible: {
+              opacity: 1, x: 0,
+              transition: { staggerChildren: 0.13, delayChildren: 0.2, duration: 1, ease: [0.22, 1, 0.36, 1] }
+            }
+          }}
+        >
           {contactInfo.map((info, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
+              transition={{ duration: 0.8, delay: 0.4 + index * 0.13, ease: [0.22, 1, 0.36, 1] }}
             >
               <InfoCard as={motion.div} whileHover={{ y: -5, scale: 1.02 }}>
                 <InfoIcon>{info.icon}</InfoIcon>
@@ -476,16 +302,20 @@ export const ContactSection: React.FC = () => {
             </motion.div>
           ))}
         </ContactInfo>
-
         <ContactForm
           ref={formRef}
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, x: 60 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-          transition={{ duration: 1, delay: 0.4 }}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={{
+            hidden: { opacity: 0, x: 60 },
+            visible: {
+              opacity: 1, x: 0,
+              transition: { staggerChildren: 0.09, delayChildren: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }
+            }
+          }}
         >
           <FormTitle size="lg">Send Us A Message</FormTitle>
-          
           <AnimatePresence>
             {isSubmitted && (
               <SuccessMessage
@@ -497,7 +327,6 @@ export const ContactSection: React.FC = () => {
               </SuccessMessage>
             )}
           </AnimatePresence>
-
           <FormGroup className="form-group">
             <FormLabel>Full Name</FormLabel>
             <FormInput
@@ -508,10 +337,8 @@ export const ContactSection: React.FC = () => {
               placeholder="Enter your full name"
               hasValue={!!formData.name}
               required
-              whileFocus={{ scale: 1.02 }}
             />
           </FormGroup>
-
           <FormGroup className="form-group">
             <FormLabel>Email Address</FormLabel>
             <FormInput
@@ -522,10 +349,8 @@ export const ContactSection: React.FC = () => {
               placeholder="Enter your email address"
               hasValue={!!formData.email}
               required
-              whileFocus={{ scale: 1.02 }}
             />
           </FormGroup>
-
           <FormGroup className="form-group">
             <FormLabel>Phone Number</FormLabel>
             <FormInput
@@ -535,10 +360,8 @@ export const ContactSection: React.FC = () => {
               onChange={handleInputChange}
               placeholder="Enter your phone number"
               hasValue={!!formData.phone}
-              whileFocus={{ scale: 1.02 }}
             />
           </FormGroup>
-
           <FormGroup className="form-group">
             <FormLabel>Service Interest</FormLabel>
             <FormInput
@@ -557,7 +380,6 @@ export const ContactSection: React.FC = () => {
               <option value="consultation">General Consultation</option>
             </FormInput>
           </FormGroup>
-
           <FormGroup className="form-group">
             <FormLabel>Message</FormLabel>
             <FormTextarea
@@ -567,10 +389,8 @@ export const ContactSection: React.FC = () => {
               placeholder="Tell us about your goals and how we can help..."
               hasValue={!!formData.message}
               required
-              whileFocus={{ scale: 1.02 }}
             />
           </FormGroup>
-
           <FormSubmitButton
             type="submit"
             disabled={isSubmitting}
@@ -583,7 +403,7 @@ export const ContactSection: React.FC = () => {
             {isSubmitting ? 'Sending Message...' : 'Send Message'}
           </FormSubmitButton>
         </ContactForm>
-      </ContactContent>
+      </ContactCard>
     </ContactContainer>
   );
 };

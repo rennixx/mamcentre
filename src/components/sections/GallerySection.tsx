@@ -4,70 +4,68 @@ import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { luxuryTheme } from '../../constants/luxuryTheme';
 
-// Media files organized by type
-const mediaFiles = {
-  images: [
-    { src: require('../../assets/IMG_0554.jpg'), title: 'Equestrian Excellence', category: 'horses' },
-    { src: require('../../assets/IMG_0973.jpg'), title: 'Riding Mastery', category: 'training' },
-    { src: require('../../assets/IMG_1665.JPG'), title: 'Championship Moments', category: 'competition' },
-    { src: require('../../assets/IMG_1696.JPG'), title: 'Elegant Stables', category: 'facilities' },
-    { src: require('../../assets/IMG_2174.jpg'), title: 'Professional Training', category: 'training' },
-    { src: require('../../assets/IMG_2194.jpg'), title: 'Beautiful Horses', category: 'horses' },
-    { src: require('../../assets/IMG_2204.jpg'), title: 'Riding Lessons', category: 'training' },
-    { src: require('../../assets/IMG_2364.JPG'), title: 'Stable Life', category: 'facilities' },
-    { src: require('../../assets/IMG_2365.JPG'), title: 'Equestrian Spirit', category: 'horses' },
-    { src: require('../../assets/IMG_2367.JPG'), title: 'Horse Care', category: 'facilities' },
-    { src: require('../../assets/IMG_2369.JPG'), title: 'Training Sessions', category: 'training' },
-    { src: require('../../assets/IMG_2370.JPG'), title: 'Riders & Horses', category: 'training' },
-    { src: require('../../assets/IMG_2378.JPG'), title: 'Competition Ready', category: 'competition' },
-    { src: require('../../assets/IMG_2487.JPG'), title: 'Excellence in Riding', category: 'training' },
-    { src: require('../../assets/IMG_2873.jpg'), title: 'Stable Atmosphere', category: 'facilities' },
-    { src: require('../../assets/IMG_2962.jpg'), title: 'Equestrian Dreams', category: 'horses' },
-    { src: require('../../assets/IMG_2975.JPG'), title: 'Professional Care', category: 'facilities' },
-    { src: require('../../assets/IMG_2976.JPG'), title: 'Horse Training', category: 'training' },
-    { src: require('../../assets/IMG_2978.PNG'), title: 'Stable Management', category: 'facilities' },
-    { src: require('../../assets/IMG_2980.JPG'), title: 'Riding Excellence', category: 'training' },
-    { src: require('../../assets/IMG_3079.jpg'), title: 'Championship Spirit', category: 'competition' },
-    { src: require('../../assets/IMG_3270.jpg'), title: 'Beautiful Moments', category: 'horses' },
-    { src: require('../../assets/IMG_3830.jpg'), title: 'Equestrian Life', category: 'training' },
-    { src: require('../../assets/IMG_3845.JPG'), title: 'Horse Excellence', category: 'horses' },
-    { src: require('../../assets/IMG_3847.JPG'), title: 'Professional Riding', category: 'training' },
-    { src: require('../../assets/IMG_3856.JPG'), title: 'Stable Excellence', category: 'facilities' },
-    { src: require('../../assets/IMG_3857.JPG'), title: 'Riding Mastery', category: 'training' },
-    { src: require('../../assets/IMG_3858.JPG'), title: 'Equestrian Joy', category: 'horses' },
-    { src: require('../../assets/IMG_4155.jpg'), title: 'Training Excellence', category: 'training' },
-    { src: require('../../assets/IMG_4260.JPG'), title: 'Horse Beauty', category: 'horses' },
-    { src: require('../../assets/IMG_4282.JPG'), title: 'Competition Level', category: 'competition' },
-    { src: require('../../assets/IMG_4283.JPG'), title: 'Professional Standards', category: 'training' },
-    { src: require('../../assets/IMG_4284.JPG'), title: 'Equestrian Excellence', category: 'horses' },
-    { src: require('../../assets/IMG_4539.PNG'), title: 'Modern Facilities', category: 'facilities' },
-    { src: require('../../assets/IMG_4540.PNG'), title: 'Training Equipment', category: 'facilities' },
-    { src: require('../../assets/IMG_4541.PNG'), title: 'Professional Setup', category: 'facilities' },
-    { src: require('../../assets/IMG_4547.PNG'), title: 'Stable Technology', category: 'facilities' },
-    { src: require('../../assets/IMG_4550.PNG'), title: 'Modern Amenities', category: 'facilities' },
-    { src: require('../../assets/IMG_4551.PNG'), title: 'Quality Equipment', category: 'facilities' },
-    { src: require('../../assets/IMG_4554.PNG'), title: 'Professional Grade', category: 'facilities' },
-    { src: require('../../assets/IMG_4555.PNG'), title: 'Excellence Standards', category: 'facilities' },
-    { src: require('../../assets/IMG_5045.PNG'), title: 'Facility Overview', category: 'facilities' },
-    { src: require('../../assets/IMG_5854.JPG'), title: 'Championship Dreams', category: 'competition' },
-    { src: require('../../assets/IMG_5856.JPG'), title: 'Equestrian Pride', category: 'horses' },
-    { src: require('../../assets/IMG_5858.JPG'), title: 'Training Success', category: 'training' },
-    { src: require('../../assets/IMG_7137.JPG'), title: 'Horse Excellence', category: 'horses' },
-    { src: require('../../assets/IMG_7216.JPG'), title: 'Professional Riding', category: 'training' },
-    { src: require('../../assets/IMG_7896.JPG'), title: 'Beautiful Stables', category: 'facilities' },
-    { src: require('../../assets/IMG_7897.jpg'), title: 'Equestrian Lifestyle', category: 'horses' }
-  ],
-  videos: [
-    { src: require('../../assets/IMG_1851.MOV'), title: 'Training in Action', category: 'training', type: 'video/quicktime' },
-    { src: require('../../assets/IMG_2349.MP4'), title: 'Championship Performance', category: 'competition', type: 'video/mp4' },
-    { src: require('../../assets/IMG_2711.MP4'), title: 'Professional Riding', category: 'training', type: 'video/mp4' },
-    { src: require('../../assets/IMG_2972.MP4'), title: 'Horse Training Session', category: 'training', type: 'video/mp4' },
-    { src: require('../../assets/IMG_3117.MOV'), title: 'Equestrian Excellence', category: 'horses', type: 'video/quicktime' },
-    { src: require('../../assets/IMG_3960.MP4'), title: 'Competition Ready', category: 'competition', type: 'video/mp4' },
-    { src: require('../../assets/IMG_4270.MP4'), title: 'Training Mastery', category: 'training', type: 'video/mp4' },
-    { src: require('../../assets/IMG_5956.MOV'), title: 'Stable Life', category: 'facilities', type: 'video/quicktime' }
-  ]
-};
+// All media as a flat array
+const allMedia: MediaItem[] = [
+  // images
+  { src: require('../../assets/IMG_0554.jpg'), title: 'Equestrian Excellence', category: 'horses' },
+  { src: require('../../assets/IMG_0973.jpg'), title: 'Riding Mastery', category: 'training' },
+  { src: require('../../assets/IMG_1665.JPG'), title: 'Championship Moments', category: 'competition' },
+  { src: require('../../assets/IMG_1696.JPG'), title: 'Elegant Stables', category: 'facilities' },
+  { src: require('../../assets/IMG_2174.jpg'), title: 'Professional Training', category: 'training' },
+  { src: require('../../assets/IMG_2194.jpg'), title: 'Beautiful Horses', category: 'horses' },
+  { src: require('../../assets/IMG_2204.jpg'), title: 'Riding Lessons', category: 'training' },
+  { src: require('../../assets/IMG_2364.JPG'), title: 'Stable Life', category: 'facilities' },
+  { src: require('../../assets/IMG_2365.JPG'), title: 'Equestrian Spirit', category: 'horses' },
+  { src: require('../../assets/IMG_2367.JPG'), title: 'Horse Care', category: 'facilities' },
+  { src: require('../../assets/IMG_2369.JPG'), title: 'Training Sessions', category: 'training' },
+  { src: require('../../assets/IMG_2370.JPG'), title: 'Riders & Horses', category: 'training' },
+  { src: require('../../assets/IMG_2378.JPG'), title: 'Competition Ready', category: 'competition' },
+  { src: require('../../assets/IMG_2487.JPG'), title: 'Excellence in Riding', category: 'training' },
+  { src: require('../../assets/IMG_2873.jpg'), title: 'Stable Atmosphere', category: 'facilities' },
+  { src: require('../../assets/IMG_2962.jpg'), title: 'Equestrian Dreams', category: 'horses' },
+  { src: require('../../assets/IMG_2975.JPG'), title: 'Professional Care', category: 'facilities' },
+  { src: require('../../assets/IMG_2976.JPG'), title: 'Horse Training', category: 'training' },
+  { src: require('../../assets/IMG_2978.PNG'), title: 'Stable Management', category: 'facilities' },
+  { src: require('../../assets/IMG_2980.JPG'), title: 'Riding Excellence', category: 'training' },
+  { src: require('../../assets/IMG_3079.jpg'), title: 'Championship Spirit', category: 'competition' },
+  { src: require('../../assets/IMG_3270.jpg'), title: 'Beautiful Moments', category: 'horses' },
+  { src: require('../../assets/IMG_3830.jpg'), title: 'Equestrian Life', category: 'training' },
+  { src: require('../../assets/IMG_3845.JPG'), title: 'Horse Excellence', category: 'horses' },
+  { src: require('../../assets/IMG_3847.JPG'), title: 'Professional Riding', category: 'training' },
+  { src: require('../../assets/IMG_3856.JPG'), title: 'Stable Excellence', category: 'facilities' },
+  { src: require('../../assets/IMG_3857.JPG'), title: 'Riding Mastery', category: 'training' },
+  { src: require('../../assets/IMG_3858.JPG'), title: 'Equestrian Joy', category: 'horses' },
+  { src: require('../../assets/IMG_4155.jpg'), title: 'Training Excellence', category: 'training' },
+  { src: require('../../assets/IMG_4260.JPG'), title: 'Horse Beauty', category: 'horses' },
+  { src: require('../../assets/IMG_4282.JPG'), title: 'Competition Level', category: 'competition' },
+  { src: require('../../assets/IMG_4283.JPG'), title: 'Professional Standards', category: 'training' },
+  { src: require('../../assets/IMG_4284.JPG'), title: 'Equestrian Excellence', category: 'horses' },
+  { src: require('../../assets/IMG_4539.PNG'), title: 'Modern Facilities', category: 'facilities' },
+  { src: require('../../assets/IMG_4540.PNG'), title: 'Training Equipment', category: 'facilities' },
+  { src: require('../../assets/IMG_4541.PNG'), title: 'Professional Setup', category: 'facilities' },
+  { src: require('../../assets/IMG_4547.PNG'), title: 'Stable Technology', category: 'facilities' },
+  { src: require('../../assets/IMG_4550.PNG'), title: 'Modern Amenities', category: 'facilities' },
+  { src: require('../../assets/IMG_4551.PNG'), title: 'Quality Equipment', category: 'facilities' },
+  { src: require('../../assets/IMG_4554.PNG'), title: 'Professional Grade', category: 'facilities' },
+  { src: require('../../assets/IMG_4555.PNG'), title: 'Excellence Standards', category: 'facilities' },
+  { src: require('../../assets/IMG_5045.PNG'), title: 'Facility Overview', category: 'facilities' },
+  { src: require('../../assets/IMG_5854.JPG'), title: 'Championship Dreams', category: 'competition' },
+  { src: require('../../assets/IMG_5856.JPG'), title: 'Equestrian Pride', category: 'horses' },
+  { src: require('../../assets/IMG_5858.JPG'), title: 'Training Success', category: 'training' },
+  { src: require('../../assets/IMG_7137.JPG'), title: 'Horse Excellence', category: 'horses' },
+  { src: require('../../assets/IMG_7216.JPG'), title: 'Professional Riding', category: 'training' },
+  { src: require('../../assets/IMG_7896.JPG'), title: 'Beautiful Stables', category: 'facilities' },
+  { src: require('../../assets/IMG_7897.jpg'), title: 'Equestrian Lifestyle', category: 'horses' },
+  // videos
+  { src: require('../../assets/IMG_1851.MOV'), title: 'Training in Action', category: 'training', type: 'video/quicktime' },
+  { src: require('../../assets/IMG_2349.MP4'), title: 'Championship Performance', category: 'competition', type: 'video/mp4' },
+  { src: require('../../assets/IMG_2711.MP4'), title: 'Professional Riding', category: 'training', type: 'video/mp4' },
+  { src: require('../../assets/IMG_2972.MP4'), title: 'Horse Training Session', category: 'training', type: 'video/mp4' },
+  { src: require('../../assets/IMG_3117.MOV'), title: 'Equestrian Excellence', category: 'horses', type: 'video/quicktime' },
+  { src: require('../../assets/IMG_3960.MP4'), title: 'Competition Ready', category: 'competition', type: 'video/mp4' },
+  { src: require('../../assets/IMG_4270.MP4'), title: 'Training Mastery', category: 'training', type: 'video/mp4' },
+  { src: require('../../assets/IMG_5956.MOV'), title: 'Stable Life', category: 'facilities', type: 'video/quicktime' }
+];
 
 const GalleryContainer = styled(motion.div)`
   position: relative;
@@ -111,76 +109,93 @@ const GalleryContent = styled.div`
   
   @media (min-width: 1440px) {
     max-width: 1800px;
-    padding: 10rem 3rem 6rem;
-  }
-  
-  @media (min-width: 1920px) {
-    max-width: 2000px;
-    padding: 12rem 4rem 8rem;
-  }
-`;
+      <GalleryContent>
+        <HeroSection>
+          <GalleryTitle
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Mam Center Gallery
+          </GalleryTitle>
+          <GallerySubtitle
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Discover the beauty and excellence of our equestrian world through stunning photography and captivating videos showcasing our horses, training, competitions, and world-class facilities.
+          </GallerySubtitle>
+        </HeroSection>
 
-const HeroSection = styled(motion.div)`
-  text-align: center;
-  margin-bottom: 6rem;
-`;
+        {/* Albums view */}
+        {!selectedAlbum && (
+          <MediaGrid
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: { staggerChildren: 0.13, delayChildren: 0.7, duration: 1, ease: [0.22, 1, 0.36, 1] }
+              }
+            }}
+          >
+            {albums.map((album, index) => (
+              <MediaCard
+                key={album.key}
+                onClick={() => setSelectedAlbum(album.key)}
+                initial={{ opacity: 0, y: 60, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.9, delay: 0.8 + index * 0.13, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ scale: 1.03, boxShadow: '0 8px 32px rgba(212,175,55,0.18)' }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <AlbumTitle>{album.title}</AlbumTitle>
+                <AlbumDescription>{album.description}</AlbumDescription>
+                <AlbumCount>{album.assets.length} items</AlbumCount>
+              </MediaCard>
+            ))}
+          </MediaGrid>
+        )}
 
-const GalleryTitle = styled(motion.h1)`
-  font-family: ${luxuryTheme.typography.fonts.luxury};
-  font-size: 4rem;
-  font-weight: ${luxuryTheme.typography.weights.bold};
-  color: ${luxuryTheme.colors.white};
-  margin-bottom: 2rem;
-  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
-  background: linear-gradient(135deg, #D4AF37 0%, #FFFFFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  
-  @media (min-width: 768px) {
-    font-size: 5rem;
-  }
-  
-  @media (min-width: 1200px) {
-    font-size: 6rem;
-  }
-`;
-
-const GallerySubtitle = styled(motion.p)`
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.9);
-  max-width: 800px;
-  margin: 0 auto 3rem;
-  line-height: 1.6;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-  
-  @media (min-width: 1440px) {
-    font-size: 1.5rem;
-    max-width: 900px;
-  }
-`;
-
-const FilterTabs = styled(motion.div)`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 4rem;
-`;
-
-const FilterTab = styled(motion.button)<{ active: boolean }>`
-  background: ${props => props.active 
-    ? 'linear-gradient(135deg, #D4AF37 0%, #B8941F 100%)'
-    : 'rgba(255, 255, 255, 0.1)'
-  };
-  color: ${props => props.active ? '#000' : '#fff'};
-  border: 1px solid ${props => props.active ? '#D4AF37' : 'rgba(255, 255, 255, 0.3)'};
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  font-weight: ${luxuryTheme.typography.weights.medium};
-  font-size: 1rem;
+        {/* Album assets view */}
+        {selectedAlbum && (
+          <>
+            <BackButton onClick={() => setSelectedAlbum(null)}>
+              ← Back to Albums
+            </BackButton>
+            <MediaGrid
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.07, delayChildren: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+                }
+              }}
+            >
+              {albums.find(a => a.key === selectedAlbum)?.assets.map((media, idx) => (
+                <MediaCard
+                  key={media.src}
+                  onClick={() => openLightbox(media)}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.2 + idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(212,175,55,0.18)' }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {media.type && media.type.startsWith('video') ? (
+                    <MediaThumb as={motion.video} src={media.src} autoPlay loop muted playsInline />
+                  ) : (
+                    <MediaThumb as={motion.img} src={media.src} alt={media.title} />
+                  )}
+                  <MediaTitle>{media.title}</MediaTitle>
+                </MediaCard>
+              ))}
+            </MediaGrid>
+          </>
+        )}
   cursor: pointer;
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
@@ -445,6 +460,47 @@ const LightboxTitle = styled.div`
   flex-shrink: 0;
 `;
 
+const HeroSection = styled(motion.div)`
+  text-align: center;
+  margin-bottom: 6rem;
+`;
+
+const GalleryTitle = styled(motion.h1)`
+  font-family: ${luxuryTheme.typography.fonts.luxury};
+  font-size: 4rem;
+  font-weight: ${luxuryTheme.typography.weights.bold};
+  color: ${luxuryTheme.colors.white};
+  margin-bottom: 2rem;
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, #D4AF37 0%, #FFFFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  @media (min-width: 768px) {
+    font-size: 5rem;
+  }
+  
+  @media (min-width: 1200px) {
+    font-size: 6rem;
+  }
+`;
+
+const GallerySubtitle = styled(motion.p)`
+  font-family: ${luxuryTheme.typography.fonts.primary};
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  
+  @media (min-width: 1440px) {
+    font-size: 1.5rem;
+    max-width: 900px;
+  }
+`;
+
 type MediaItem = {
   src: any;
   title: string;
@@ -453,24 +509,36 @@ type MediaItem = {
 };
 
 export const GallerySection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
   const [selectedMedia, setSelectedMedia] = useState<MediaItem | null>(null);
-  const [allMedia] = useState<MediaItem[]>([...mediaFiles.images, ...mediaFiles.videos]);
-  
-  const filters = [
-    { key: 'all', label: 'All Media' },
-    { key: 'horses', label: 'Horses' },
-    { key: 'training', label: 'Training' },
-    { key: 'competition', label: 'Competition' },
-    { key: 'facilities', label: 'Facilities' },
-    { key: 'videos', label: 'Videos' }
+  const [selectedAlbum, setSelectedAlbum] = useState<string | null>(null);
+
+  // Albums definition
+  const albums = [
+    {
+      key: 'horses',
+      title: 'Our Horses',
+      description: 'Photos and videos of our beautiful horses.',
+      assets: allMedia.filter((item: MediaItem) => item.category === 'horses'),
+    },
+    {
+      key: 'training',
+      title: 'Training',
+      description: 'Training sessions and riding mastery.',
+      assets: allMedia.filter((item: MediaItem) => item.category === 'training'),
+    },
+    {
+      key: 'competition',
+      title: 'Competitions',
+      description: 'Competition moments and championship performances.',
+      assets: allMedia.filter((item: MediaItem) => item.category === 'competition'),
+    },
+    {
+      key: 'facilities',
+      title: 'Facilities',
+      description: 'Our stables, equipment, and world-class facilities.',
+      assets: allMedia.filter((item: MediaItem) => item.category === 'facilities'),
+    },
   ];
-  
-  const filteredMedia = allMedia.filter(item => {
-    if (activeFilter === 'all') return true;
-    if (activeFilter === 'videos') return item.type;
-    return item.category === activeFilter;
-  });
   
   const openLightbox = (media: MediaItem) => {
     setSelectedMedia(media);
@@ -484,19 +552,26 @@ export const GallerySection: React.FC = () => {
     document.body.style.overflow = '';
   };
   
+  // Helper to get current media list for lightbox navigation
+  const getCurrentMediaList = (): MediaItem[] => {
+    if (selectedAlbum) {
+      const album = albums.find(a => a.key === selectedAlbum);
+      return album ? album.assets : allMedia;
+    }
+    return allMedia;
+  };
+
   const navigateMedia = (direction: 'prev' | 'next') => {
     if (!selectedMedia) return;
-    
-    const currentIndex = filteredMedia.findIndex(item => item.src === selectedMedia.src);
+    const mediaList = getCurrentMediaList();
+    const currentIndex = mediaList.findIndex((item: MediaItem) => item.src === selectedMedia.src);
     let newIndex;
-    
     if (direction === 'prev') {
-      newIndex = currentIndex > 0 ? currentIndex - 1 : filteredMedia.length - 1;
+      newIndex = currentIndex > 0 ? currentIndex - 1 : mediaList.length - 1;
     } else {
-      newIndex = currentIndex < filteredMedia.length - 1 ? currentIndex + 1 : 0;
+      newIndex = currentIndex < mediaList.length - 1 ? currentIndex + 1 : 0;
     }
-    
-    setSelectedMedia(filteredMedia[newIndex]);
+    setSelectedMedia(mediaList[newIndex]);
   };
 
   // Handle escape key to close lightbox
@@ -542,72 +617,109 @@ export const GallerySection: React.FC = () => {
           </GallerySubtitle>
         </HeroSection>
         
-        <FilterTabs
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          {filters.map((filter) => (
-            <FilterTab
-              key={filter.key}
-              active={activeFilter === filter.key}
-              onClick={() => setActiveFilter(filter.key)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {filter.label}
-            </FilterTab>
-          ))}
-        </FilterTabs>
-        
-        <MediaGrid
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          {filteredMedia.map((media, index) => (
-            <MediaCard
-              key={`${media.category}-${index}`}
-              onClick={() => openLightbox(media)}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 + (index % 12) * 0.1 }}
-              whileHover={{ y: -8 }}
-            >
-              {media.type ? (
-                <>
-                  <MediaVideo 
-                    muted 
-                    loop 
-                    preload="metadata"
-                    onMouseEnter={(e) => e.currentTarget.play()}
-                    onMouseLeave={(e) => e.currentTarget.pause()}
-                  >
-                    <source src={media.src} type={media.type} />
+        {/* Albums view */}
+        {!selectedAlbum && (
+          <MediaGrid
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
+          >
+            {albums.map((album, index) => (
+              <MediaCard
+                key={album.key}
+                onClick={() => setSelectedAlbum(album.key)}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 + (index % 4) * 0.1 }}
+                whileHover={{ y: -8 }}
+              >
+                {/* Use the first asset as the album cover */}
+                {album.assets[0] && album.assets[0].type ? (
+                  <MediaVideo muted loop preload="metadata">
+                    <source src={album.assets[0].src} type={album.assets[0].type} />
                   </MediaVideo>
-                  <VideoPlayIcon
-                    initial={{ scale: 1 }}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    style={{ 
-                      willChange: 'transform',
-                      backfaceVisibility: 'hidden'
-                    }}
-                  />
-                </>
-              ) : (
-                <MediaImage 
-                  src={media.src} 
-                  alt={media.title} 
-                  loading="lazy"
-                />
-              )}
-              <MediaOverlay>
-                <MediaTitle>{media.title}</MediaTitle>
-              </MediaOverlay>
-            </MediaCard>
-          ))}
-        </MediaGrid>
+                ) : album.assets[0] ? (
+                  <MediaImage src={album.assets[0].src} alt={album.assets[0].title} loading="lazy" />
+                ) : null}
+                <MediaOverlay>
+                  <MediaTitle>{album.title}</MediaTitle>
+                </MediaOverlay>
+              </MediaCard>
+            ))}
+          </MediaGrid>
+        )}
+        {/* Album assets view */}
+        {selectedAlbum && (
+          <>
+            <div style={{ marginBottom: '2rem', textAlign: 'left' }}>
+              <button
+                onClick={() => setSelectedAlbum(null)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#D4AF37',
+                  fontSize: '1.1rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  marginBottom: '0.5rem',
+                  padding: 0,
+                  textDecoration: 'underline',
+                }}
+              >
+                ← Back to Albums
+              </button>
+              <span style={{ marginLeft: 16, color: '#fff', fontWeight: 500, fontSize: '1.2rem' }}>{albums.find(a => a.key === selectedAlbum)?.title}</span>
+            </div>
+            <MediaGrid
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              {albums.find(a => a.key === selectedAlbum)?.assets.map((media, index) => (
+                <MediaCard
+                  key={`${media.category}-${index}`}
+                  onClick={() => openLightbox(media)}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.8 + (index % 12) * 0.1 }}
+                  whileHover={{ y: -8 }}
+                >
+                  {media.type ? (
+                    <>
+                      <MediaVideo 
+                        muted 
+                        loop 
+                        preload="metadata"
+                        onMouseEnter={(e) => e.currentTarget.play()}
+                        onMouseLeave={(e) => e.currentTarget.pause()}
+                      >
+                        <source src={media.src} type={media.type} />
+                      </MediaVideo>
+                      <VideoPlayIcon
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        style={{ 
+                          willChange: 'transform',
+                          backfaceVisibility: 'hidden'
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <MediaImage 
+                      src={media.src} 
+                      alt={media.title} 
+                      loading="lazy"
+                    />
+                  )}
+                  <MediaOverlay>
+                    <MediaTitle>{media.title}</MediaTitle>
+                  </MediaOverlay>
+                </MediaCard>
+              ))}
+            </MediaGrid>
+          </>
+        )}
       </GalleryContent>
       
       {/* Lightbox */}
@@ -633,7 +745,7 @@ export const GallerySection: React.FC = () => {
                 ✕
               </LightboxClose>
               
-              {filteredMedia.length > 1 && (
+              {getCurrentMediaList().length > 1 && (
                 <>
                   <LightboxNav
                     direction="prev"
