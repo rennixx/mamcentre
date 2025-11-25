@@ -108,7 +108,7 @@ export const useOptimizedParallax = (speed: number = 0.5) => {
 
 export const useMemoizedAnimation = (
   animationFn: () => void,
-  dependencies: any[]
+  dependencies: any[] = []
 ) => {
   const hasAnimated = useRef(false);
 
@@ -117,7 +117,8 @@ export const useMemoizedAnimation = (
       animationFn();
       hasAnimated.current = true;
     }
-  }, [animationFn, ...dependencies]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependencies);
 
   return hasAnimated.current;
 };
