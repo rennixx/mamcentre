@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import { 
-  LuxurySection, 
-  LuxuryText, 
-  GlassCard,
-  FloatingButton
+import {
+  LuxurySection,
+  LuxuryText,
+  GlassCard
 } from '../ui/LuxuryComponents';
 import { luxuryTheme } from '../../constants/luxuryTheme';
 import { useOptimizedReveal, usePerformantScroll } from '../../hooks/useOptimizedAnimations';

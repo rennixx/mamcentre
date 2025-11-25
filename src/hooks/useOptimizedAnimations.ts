@@ -117,7 +117,7 @@ export const useMemoizedAnimation = (
       animationFn();
       hasAnimated.current = true;
     }
-  }, dependencies);
+  }, [animationFn, ...dependencies]);
 
   return hasAnimated.current;
 };

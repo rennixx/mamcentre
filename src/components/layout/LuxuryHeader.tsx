@@ -237,26 +237,6 @@ const MobileNavLink = styled(Link)<{ isActive: boolean }>`
   }
 `;
 
-const CloseButton = styled(motion.button)`
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: transparent;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: ${luxuryTheme.colors.white};
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.8rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  
-  &:hover {
-    color: ${luxuryTheme.colors.gold.primary};
-    border: 1.5px solid rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.08);
-    transform: rotate(90deg);
-  }
-`;
 
 const MobileMenuContent = styled.div`
   display: flex;

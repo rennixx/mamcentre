@@ -5,7 +5,6 @@ import { SimpleLayout } from './components/layout/SimpleLayout';
 import { SimpleHomePage } from './components/SimpleHomePage';
 import { SimpleServicesPage } from './components/SimpleServicesPage';
 import { LuxuryAboutPage } from './pages/about/LuxuryAboutPage';
-import { LuxuryServicesPage } from './pages/services/LuxuryServicesPage';
 import { LuxuryGalleryPage } from './pages/gallery/LuxuryGalleryPage';
 import { LuxuryContactPage } from './pages/contact/LuxuryContactPage';
 import BookingPage from './pages/booking/BookingPage';

@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
 import { 
   LuxurySection, 
   LuxuryText, 
@@ -126,13 +125,6 @@ const OfferChoice = styled.button<{ selected: boolean }>`
   }
 `;
 
-const OfferDescription = styled.div`
-  text-align: center;
-  color: rgba(255,255,255,0.85);
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  min-height: 2.5rem;
-`;
 
 const OfferDetails = styled.div`
   background: rgba(255,255,255,0.04);
@@ -177,119 +169,8 @@ const OfferDetailsFeature = styled.li`
   }
 `;
 
-// Centered card for offers and form
-const BookingInfo = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  flex: 1 1 0;
-  min-width: 0;
-  padding: 2rem 0;
-`;
 
-const PackageCard = styled(GlassCard)<{ isSelected: boolean }>`
-  background: ${props => props.isSelected 
-    ? 'rgba(212, 175, 55, 0.15)' 
-    : 'rgba(255, 255, 255, 0.08)'
-  };
-  backdrop-filter: blur(20px);
-  border: 1px solid ${props => props.isSelected 
-    ? 'rgba(212, 175, 55, 0.5)' 
-    : 'rgba(255, 255, 255, 0.15)'
-  };
-  padding: 2rem;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: ${luxuryTheme.gradients.goldNavy};
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-  }
-  
-  &:hover::before,
-  ${props => props.isSelected && '&::before'} {
-    transform: translateX(0);
-  }
-  
-  &:hover {
-    transform: translateY(-5px) scale(1.02);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(212, 175, 55, 0.4);
-  }
-`;
 
-const PackageHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-bottom: 1.5rem;
-`;
-
-const PackageTitle = styled.h3`
-  font-family: ${luxuryTheme.typography.fonts.luxury};
-  color: ${luxuryTheme.colors.white};
-  font-size: 1.4rem;
-  font-weight: ${luxuryTheme.typography.weights.bold};
-  margin-bottom: 0.5rem;
-`;
-
-const PackagePrice = styled.div`
-  text-align: right;
-`;
-
-const PriceAmount = styled.div`
-  font-family: ${luxuryTheme.typography.fonts.luxury};
-  color: ${luxuryTheme.colors.gold.primary};
-  font-size: 1.8rem;
-  font-weight: ${luxuryTheme.typography.weights.bold};
-  line-height: 1;
-`;
-
-const PriceUnit = styled.div`
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.85rem;
-  margin-top: 0.25rem;
-`;
-
-const PackageDescription = styled.p`
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-`;
-
-const PackageFeatures = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const PackageFeature = styled.li`
-  font-family: ${luxuryTheme.typography.fonts.primary};
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-  position: relative;
-  padding-left: 1.5rem;
-  
-  &::before {
-    content: '✦';
-    position: absolute;
-    left: 0;
-    color: ${luxuryTheme.colors.gold.primary};
-    font-size: 0.8rem;
-  }
-`;
 
 const BookingForm = styled(motion.div)`
   background: rgba(16, 21, 28, 0.85);
